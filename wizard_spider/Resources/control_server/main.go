@@ -3,11 +3,11 @@ package main
 import (
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 var testSession1 = sessions.Session{

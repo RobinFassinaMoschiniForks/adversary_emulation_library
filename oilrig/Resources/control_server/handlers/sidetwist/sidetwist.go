@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
 	"github.com/gorilla/mux"
 )
 
@@ -114,7 +114,7 @@ func (s *SideTwistHandler) StartHandler(restAddress string, configEntry config.H
 
 	// make sure we know the REST API address
 	s.restAPIaddress = restAddress
-	
+
 	// make sure we can access the HTML template page for responses
 	templateData, err := ioutil.ReadFile(s.templatePath)
 	if err != nil {
@@ -138,7 +138,7 @@ func (s *SideTwistHandler) StartHandler(restAddress string, configEntry config.H
 	urlRouter.HandleFunc("/search/{identifier}", s.handleResponse).Methods("POST")
 	urlRouter.HandleFunc("/getFile/{filename}", s.downloadFile).Methods("GET")
 	urlRouter.HandleFunc("/logo.png", fetchLogo).Methods("GET")
-	
+
 	// start handler in goroutine so it doesn't block
 	go func() {
 		err := s.server.ListenAndServe()
@@ -319,19 +319,19 @@ func forwardGetTask(restAPIaddress string, guid string) (string, error) {
 func (s *SideTwistHandler) processAndForwardImplantOutput(guid string, data []byte) (string, error) {
 	var commandOutput []byte
 	var err error
-	
+
 	_, pendingOutput := s.pendingCommandOutput[guid]
 	_, pendingUpload := s.pendingUploads[guid]
 	if !(pendingOutput || pendingUpload) {
 		return "", errors.New(fmt.Sprintf("Implant %s does not have any tasks pending output.", guid))
 	}
-	
+
 	// Extract command output from data
 	outputJson := make(map[int]string)
 	if err = json.Unmarshal(data, &outputJson); err != nil {
 		return "", err
 	}
-	
+
 	// We should only have one command output
 	for commandNum, encodedOutput := range outputJson {
 		logger.Info(fmt.Sprintf("Processing output for task %d for implant %s", commandNum, guid))
@@ -372,7 +372,7 @@ func (s *SideTwistHandler) forwardUpload(fileName string, data []byte) (string, 
 
 func (s *SideTwistHandler) forwardTaskOutput(guid string, data []byte) (string, error) {
 	url := "http://" + s.restAPIaddress + "/api/v1.0/task/output/" + guid
-	
+
 	// initialize HTTP request
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 	if err != nil {

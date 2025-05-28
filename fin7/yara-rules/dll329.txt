@@ -1,10 +1,10 @@
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with dll329.dll"
-	
+
     strings:
 
 		$strings1 = "InitializeCriticalSection"
@@ -41,7 +41,7 @@ rule functions
 		$strings33 = "CreateFileW"
 		$strings34 = "WriteConsoleW"
 		$strings35 = "DecodePointer"
-		
+
     condition:
         all of them
 }

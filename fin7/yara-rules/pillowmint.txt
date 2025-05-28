@@ -1,10 +1,10 @@
 rule output
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect output associated with pillowMint.exe"
-	
+
     strings:
         $output1 = "[i] searching for 'AccountingIQ.exe'"
 		$output2 = "[!] unable to find process with name AccountingIQ.exe"
@@ -29,10 +29,10 @@ rule output
 rule shim
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with shimming"
-	
+
     strings:
         $shim1 = "cannot create shim for unknown locale::facet"
 		$shim2 = "*NSt13__facet_shims12_GLOBAL__N_112collate_shimIcEE"
@@ -50,7 +50,7 @@ rule shim
 		$shim14 = "*NSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIcLb1EEE"
 		$shim15 = "*NSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb0EEE"
 		$shim16 = "*NSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb1EEE"
-		
+
     condition:
         all of them
 }
@@ -58,10 +58,10 @@ rule shim
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with pillowMint.exe"
-	
+
     strings:
 	    $function1 = "AddVectoredExceptionHandler"
 		$function2 = "CloseHandle"
@@ -123,7 +123,7 @@ rule functions
 		$function58 = "WaitForMultipleObjects"
 		$function59 = "WaitForSingleObject"
 		$function60 = "WideCharToMultiByte"
-		
+
     condition:
         all of them
 }
@@ -131,10 +131,10 @@ rule functions
 rule money
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with financial features"
-	
+
     strings:
         $money1 = "%s: __pos (which is %zu) > this->size() (which is %zu)"
 		$money2 = "NSt7__cxx119money_getIcSt19istreambuf_iteratorIcSt11char_traitsIcEEEE"

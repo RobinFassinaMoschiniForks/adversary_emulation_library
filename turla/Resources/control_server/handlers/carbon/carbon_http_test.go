@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 const (
@@ -117,11 +117,11 @@ var exampleTaskBytesNoPayload = []byte{
 var validPostOneFile = []byte("AAAAAAAAAACXbumfIhezZScBgcH/NfS4WNUjsYcMMld1uMPglI+axCym+VU+OepPrC6b5ZQWwY3wJVm3wop15n+lpeVVMmrcCxq3vJtghOCek9P0apbAEvBJ+IdQUFn7Z13Gutxt2erhOr3T4tIyh1fe7W2AV0HVPvrV455UHNG6OLH4Q9nDlxjSO5U18L5EeNAG8noX0K7ZMTghXiZYYJsV/oLQWIGTXhivarsFYcdEMMOxf1pTMIp8HwcwPVoQ")
 
 var invalidPostBadVal = []byte{
-	0x03, 0x00, 0x00, 0x00, 
-	0x00, 0x00, 0x00, 0x00, 
-	0x08, 0x00, 0x00, 0x00, 
-	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 
-	0x04, 0x00, 0x00, 0x00, 
+	0x03, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00,
+	0x08, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+	0x04, 0x00, 0x00, 0x00,
 	0xaa, 0xaa, 0xaa, 0xaa,
 }
 
@@ -579,7 +579,7 @@ func TestHandlePostResponse(t *testing.T) {
 	// start handler
 	startCarbonHttpHandler(handler, t)
 	defer stopCarbonHttpHandler(handler, t)
-  
+
 	// send beacon to establish session. expecting 200 OK and blank command response
 	registerStatus, registerBody := sendImplantBeacon(t, "SOMEUUID", registerURL)
 	if string(registerStatus) != serverMsgOK {
@@ -643,7 +643,7 @@ func TestExtractTestParts(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../../")
 	defer os.Chdir(cwd) // restore cwd at end of test
-	
+
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
@@ -661,14 +661,14 @@ func TestExtractTestParts(t *testing.T) {
 		t.Errorf("Got error when none expected: %s", err.Error())
 	}
 	compareTasks(&task, &exampleTaskStruct, t)
-	
+
 	var taskNoRoutingBlob Task
 	err = handler.extractTaskParts(exampleTaskNoRoutingBlob, &taskNoRoutingBlob)
 	if err != nil {
 		t.Errorf("Got error when none expected: %s", err.Error())
 	}
 	compareTasks(&taskNoRoutingBlob, &exampleTaskNoRoutingBlobStruct, t)
-	
+
 	var taskNoPayload Task
 	err = handler.extractTaskParts(exampleTaskNoPayload, &taskNoPayload)
 	if err != nil {
@@ -681,7 +681,7 @@ func TestExtractTestParts(t *testing.T) {
 	if err.Error() != errWant {
 		t.Errorf("Got '%s' expected '%s'", err.Error(), errWant)
 	}
-	
+
 	err = handler.extractTaskParts(exampleTaskMissingPayloadDest, &task)
 	errWant = "Payload destination path not provided with payload name."
 	if err.Error() != errWant {
@@ -729,7 +729,7 @@ func TestConvertTaskToResponse(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../../")
 	defer os.Chdir(cwd) // restore cwd at end of test
-	
+
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
@@ -769,7 +769,7 @@ func TestConvertTaskToResponse(t *testing.T) {
 	if err != nil {
 		t.Errorf("Got '%s' expected '%s'", err.Error(), "nil")
 	}
-	
+
 	task, err = handler.convertTaskToResponse(exampleBeacon.GUID, exampleTaskNoRoutingBlob)
 	if task != cmdRespFilledWantNoRoutingBlob {
 		t.Errorf("Got '%s' expected '%s'", task, cmdRespFilledWantNoRoutingBlob)
@@ -777,7 +777,7 @@ func TestConvertTaskToResponse(t *testing.T) {
 	if err != nil {
 		t.Errorf("Got '%s' expected '%s'", err.Error(), "nil")
 	}
-	
+
 	task, err = handler.convertTaskToResponse(exampleBeacon.GUID, exampleTaskNoPayload)
 	if task != cmdRespFilledWantNoPayload {
 		t.Errorf("Got '%s' expected '%s'", task, cmdRespFilledWantNoPayload)
@@ -827,7 +827,7 @@ func TestGetTask(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../../")
 	defer os.Chdir(cwd) // restore cwd at end of test
-	
+
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)

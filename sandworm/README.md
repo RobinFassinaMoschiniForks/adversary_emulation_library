@@ -1,7 +1,7 @@
 # Sandworm
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Sandworm in the wild. We have adapted the scenario based on tools and resources available at the time. 
+Based on open-source intelligence, the ATT&CK &reg; Evaluations team created the below scenario leveraging techniques seen from Sandworm in the wild. We have adapted the scenario based on tools and resources available at the time.
 
 ## Adversary Overview 🏜️ 🪱
 
@@ -55,12 +55,12 @@ $ python3 Resources/utilities/crypt_executables.py -i ./ -p malware --decrypt
 - [Win64/Spy.KeyLogger.G](./Resources/keylogger/)
 
 ### Scenario Walkthrough
-- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (9 steps). 
+- [Detection Scenario](./Emulation_Plan/Scenario_1/) - Step by Step walkthrough of Scenario's procedures (9 steps).
 - [Protection Scenario](./Emulation_Plan/Scenario_2/) - Step by Step walkthrough of Scenario's procedures (3 tests)
 
 ## For Analysts 🔎
-- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams. 
-- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario. 
+- [Operation Flow](./Operations_Flow/Operations_Flow.md/) - High-level summary of the scenario & infrastructure with diagrams.
+- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario.
 
 ## Acknowledgements
 
@@ -70,9 +70,9 @@ We would like to formally thank the people that contributed to the content, revi
 
 ## Connect with Us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
-Email: <evals@mitre-engenuity.org><br>
+Email: <evals@mitre.org><br>
 Twitter: https://twitter.com/MITREengenuity<br>
 LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
 
@@ -82,7 +82,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-© 2022 MITRE Engenuity. Approved for Public Release. Document number AT0016.
+© 2022 The MITRE Corporation. Approved for Public Release. Document number AT0016.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

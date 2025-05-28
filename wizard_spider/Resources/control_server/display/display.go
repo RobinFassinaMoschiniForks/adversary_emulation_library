@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/sessions"
 	"github.com/olekukonko/tablewriter"
 )
 

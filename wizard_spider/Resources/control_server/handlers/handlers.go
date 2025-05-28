@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	"attackevals.mitre-engenuity.org/control_server/handlers/emotet"
-	"attackevals.mitre-engenuity.org/control_server/handlers/exaramel"
-	"attackevals.mitre-engenuity.org/control_server/handlers/https"
-	"attackevals.mitre-engenuity.org/control_server/handlers/simplehttp"
-	"attackevals.mitre-engenuity.org/control_server/handlers/trickbot"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/handlers/emotet"
+	"attackevals.mitre.org/control_server/handlers/exaramel"
+	"attackevals.mitre.org/control_server/handlers/https"
+	"attackevals.mitre.org/control_server/handlers/simplehttp"
+	"attackevals.mitre.org/control_server/handlers/trickbot"
+	"attackevals.mitre.org/control_server/logger"
 )
 
 // StartHandlers starts the C2 handlers

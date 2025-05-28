@@ -1,6 +1,6 @@
 # FIN7 Adversary Emulation
 
-This adversary emulation plan is derived from the original [FIN7](https://attack.mitre.org/groups/G0046/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). It's format has been updated in collaboration with the [Center for Threat-Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) to consolidate MITRE Engenuity emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats. This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
+This adversary emulation plan is derived from the original [FIN7](https://attack.mitre.org/groups/G0046/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre.org/carbanak-fin7/). It's format has been updated in collaboration with the [Center for Threat-Informed Defense](https://ctid.mitre.org/) to consolidate The MITRE Corporation emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats. This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
 
 
 **FIN7** appears to be a financially motivated threat group that has primarily targeted the U.S. retail, restaurant, and hospitality sectors since mid-2015. They often use point-of-sale malware. A portion of FIN7 was operated out of a front company called Combi Security.<sup>[11](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html)</sup> FIN7 is sometimes referred to as Carbanak Group, but these appear to be two groups using the same Carbanak malware and are therefore tracked separately.
@@ -71,7 +71,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-© 2021 MITRE Engenuity. Approved for Public Release. Document number AT0016.
+© 2021 The MITRE Corporation. Approved for Public Release. Document number AT0016.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

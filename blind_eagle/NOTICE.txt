@@ -1,4 +1,4 @@
-© 2023 MITRE Engenuity, LLC.  Approved for Public Release. Document number CT0076.
+© 2023 The MITRE Corporation, LLC.  Approved for Public Release. Document number CT0076.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

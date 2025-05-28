@@ -1,10 +1,10 @@
 rule samcat
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with samcat.exe"
-	
+
     strings:
         $katz1 = "NTPASSWORDHISTORY"
 		$katz2 = "LMPASSWORDHISTORY"
@@ -41,7 +41,7 @@ rule samcat
 		$katz33 = "SamOpen"
 		$katz34 = "VirtualAlloc"
 		$katz35 = "SamCloseHandle"
-		
+
     condition:
         all of them
 }
@@ -49,10 +49,10 @@ rule samcat
 rule pillowmint
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with pillowMint.exe"
-	
+
     strings:
         $pillowmint1 = "[i] searching for 'AccountingIQ.exe'"
 		$pillowmint2 = "[!] unable to find process with name AccountingIQ.exe"
@@ -78,11 +78,11 @@ rule pillowmint
 rule hollow
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with hollow.exe"
-	
-    strings:		
+
+    strings:
 		$hollow1 = "[---> Process Hollow  <---]"
 		$hollow2 = "[*] Running the target executable (%s)"
 		$hollow3 = "-k netsrv"
@@ -120,10 +120,10 @@ rule hollow
 rule sql_rat
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with sql-rat.js"
-	
+
     strings:
         $sqlrat1 = "jitter = Math.round(Math.random()*(max-min)+min)"
         $sqlrat2 = "Select * From Win32_BIOS"
@@ -158,7 +158,7 @@ rule sql_rat
 rule boostwrite
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings in BOOSTWRITE.exe"
 
@@ -207,10 +207,10 @@ rule boostwrite
 rule babymetal
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to strings associated with babymetal.exe"
-	
+
     strings:
         $babymetal1 = "DeleteCriticalSection"
 		$babymetal2 = "EnterCriticalSection"
@@ -251,10 +251,10 @@ rule babymetal
 rule dll329
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with dll329.dll"
-	
+
     strings:
 
 		$dll1 = "InitializeCriticalSection"
@@ -291,7 +291,7 @@ rule dll329
 		$dll33 = "CreateFileW"
 		$dll34 = "WriteConsoleW"
 		$dll35 = "DecodePointer"
-		
+
     condition:
         all of them
 }

@@ -16,7 +16,7 @@ import (
 	"strconv"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/logger"
 )
 
 const registerImplantEndpoint = "/auth/app"

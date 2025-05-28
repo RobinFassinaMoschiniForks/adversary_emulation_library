@@ -3,7 +3,7 @@ package logger_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/logger"
 )
 
 // logger.Debug()

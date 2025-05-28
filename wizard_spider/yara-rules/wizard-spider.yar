@@ -2,10 +2,10 @@ rule EmotetClientDLL_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with EmotetClientDLL.dll"
-	
+
     strings:
 		$string1 = "Emotet" nocase
 		$string2 = "outlook" nocase
@@ -27,10 +27,10 @@ rule OutlookScraper_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with OutlookScraper.dll"
-	
+
     strings:
         $string1 = "OutlookScraper" nocase
         $string2 = "powershell -Command" nocase
@@ -50,10 +50,10 @@ rule ryuk_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with ryuk.exe"
-	
+
     strings:
 		$string1 = "Your network has been penetrated" nocase
 		$string2 = "All files on each host in the network has been encrypted with a strong algorithm" nocase
@@ -74,10 +74,10 @@ rule uxtheme_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with uxtheme.exe"
-	
+
     strings:
 		$string1 = "temp.txt" nocase
 		$string2 = "WinHttp" nocase

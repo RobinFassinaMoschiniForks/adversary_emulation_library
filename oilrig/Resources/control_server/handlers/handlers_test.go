@@ -5,30 +5,30 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
 )
 
 func mockHandlerConfigFileReaderAllEnabled(path string) ([]byte, error) {
-	dataStr := `simplehttp: 
+	dataStr := `simplehttp:
   host: 127.0.0.1
   port: 60001
   enabled: true
-https: 
+https:
   host: 127.0.0.1
   port: 60002
   cert_file: /dummy/https/cert
   key_file: /dummy/https/key
   enabled: true
-trickbot: 
+trickbot:
   host: 127.0.0.1
   port: 60003
   enabled: true
-emotet: 
+emotet:
   host: 127.0.0.1
   port: 60004
   enabled: true
-exaramel: 
+exaramel:
   host: 127.0.0.1
   port: 60005
   cert_file: /dummy/exaramel/cert
@@ -42,25 +42,25 @@ sidetwist:
 }
 
 func mockHandlerConfigFileReaderSomeEnabled(path string) ([]byte, error) {
-	dataStr := `simplehttp: 
+	dataStr := `simplehttp:
   host: 127.0.0.1
   port: 60011
   enabled: true
-https: 
+https:
   host: 127.0.0.1
   port: 60012
   cert_file: /dummy/https/cert
   key_file: /dummy/https/key
   enabled: true
-trickbot: 
+trickbot:
   host: 127.0.0.1
   port: 60013
   enabled: false
-emotet: 
+emotet:
   host: 127.0.0.1
   port: 60014
   enabled: true
-exaramel: 
+exaramel:
   host: 127.0.0.1
   port: 60015
   cert_file: /dummy/exaramel/cert
@@ -79,7 +79,7 @@ func TestStartStopHandlers(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../")
 	defer os.Chdir(cwd) // restore cwd at end of test
-	
+
 	wantAvailable := 6
 	wantRunning := 6
 	config.SetRestAPIConfig("config/restAPI_config.yml")
@@ -105,7 +105,7 @@ func TestStartStopHandlersSomeEnabled(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../")
 	defer os.Chdir(cwd) // restore cwd at end of test
-	
+
 	wantAvailable := 6
 	wantRunning := 4
 	config.SetRestAPIConfig("config/restAPI_config.yml")

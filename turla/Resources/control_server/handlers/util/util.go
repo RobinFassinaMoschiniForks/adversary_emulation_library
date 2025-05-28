@@ -8,8 +8,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	restapi_util "attackevals.mitre-engenuity.org/control_server/restapi/util"
+	"attackevals.mitre.org/control_server/config"
+	restapi_util "attackevals.mitre.org/control_server/restapi/util"
 )
 
 // The Handler interface provides methods that all C2 handlers must implement.

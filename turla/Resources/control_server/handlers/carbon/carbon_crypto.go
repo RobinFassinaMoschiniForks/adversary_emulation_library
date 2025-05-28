@@ -10,10 +10,10 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	
+
 	"golang.org/x/crypto/cast5"
-	
-	"attackevals.mitre-engenuity.org/control_server/logger"
+
+	"attackevals.mitre.org/control_server/logger"
 )
 
 const (
@@ -53,7 +53,7 @@ func cbcEncrypt(castCipher *cast5.Cipher, plaintext, iv []byte) ([]byte, error) 
 	ciphertext = append(ciphertext, ivPlaintextPadded[:cast5.BlockSize]...) // prepend IV to ciphertext
 	dstBlock := make([]byte, cast5.BlockSize)
 	numIterations := (len(ivPlaintextPadded) / cast5.BlockSize) - 1
-	
+
 	// Ci = Enc(Pi XOR Ci-1), where C0 = IV
 	for i := 1; i <= numIterations; i++ {
 		toXOR := ciphertext[(i-1)*cast5.BlockSize:i*cast5.BlockSize]
@@ -72,11 +72,11 @@ func cbcDecrypt(castCipher *cast5.Cipher, ivCiphertext []byte) ([]byte, error) {
 	if len(ivCiphertext) % cast5.BlockSize != 0 {
 		return nil, errors.New("Ciphertext length not a multiple of cast128 block length.")
 	}
-	
+
 	plaintext := make([]byte, 0)
 	dstBlock := make([]byte, cast5.BlockSize)
 	numIterations := (len(ivCiphertext) / cast5.BlockSize) - 1 // N ciphertext blocks + 1 IV block = N plaintext blocks
-	
+
 	// Pi = Dec(Ci) XOR Ci-1 where C0 = IV
 	for i := 1; i <= numIterations; i++ {
 		toXOR := ivCiphertext[(i-1)*cast5.BlockSize:i*cast5.BlockSize]
@@ -98,7 +98,7 @@ func (c *CarbonHttpHandler) cast5CbcEncrypt(key, plaintext []byte) ([]byte, erro
 	if err != nil {
 		return nil, err
 	}
-	
+
 	// Encrypt task bytes using CAST128
 	castCipher, err := cast5.NewCipher(key)
 	if err != nil {
@@ -121,7 +121,7 @@ func (c *CarbonHttpHandler) encodeTaskResponse(taskBytes []byte) (string, error)
 	if !c.useEncryption {
 		return base64.StdEncoding.EncodeToString(taskBytes), nil
 	}
-	
+
 	// generate random CAST128 key
 	castKey := make([]byte, cast5.KeySize)
 	_, err := c.genRandBytesFn(castKey)
@@ -129,12 +129,12 @@ func (c *CarbonHttpHandler) encodeTaskResponse(taskBytes []byte) (string, error)
 		return "", err
 	}
 	logger.Debug(fmt.Sprintf("Generated random CAST128 key: %s", hex.EncodeToString(castKey)))
-	
+
 	taskCiphertext, err := c.cast5CbcEncrypt(castKey, taskBytes)
 	if err != nil {
 		return "", err
 	}
-	
+
 	// base64-encode and encrypt cast128 key using RSA and prepend to ciphertext
 	encodedKeyBytes := []byte(base64.StdEncoding.EncodeToString(castKey))
 	rng := rand.Reader
@@ -143,7 +143,7 @@ func (c *CarbonHttpHandler) encodeTaskResponse(taskBytes []byte) (string, error)
 		return "", err
 	}
 	combined := append(keyCiphertext, taskCiphertext...)
-	
+
 	// return base64-encoded blob of whole thing
 	return base64.StdEncoding.EncodeToString(combined), nil
 }

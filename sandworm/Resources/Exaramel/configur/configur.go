@@ -17,8 +17,8 @@ import (
 
 	uuid "github.com/satori/go.uuid"
 
-	"attackevals.mitre-engenuity.org/exaramel/logger"
-	"attackevals.mitre-engenuity.org/exaramel/networker"
+	"attackevals.mitre.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/networker"
 )
 
 const SockAddr = "/tmp/.applocktx"

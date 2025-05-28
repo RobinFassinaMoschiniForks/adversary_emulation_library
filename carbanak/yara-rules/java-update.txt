@@ -1,16 +1,16 @@
 rule carbanak_string
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with Carbanak"
-	
+
     strings:
         $carbanak_string1 = "pashulke67@gmail.com"
 		$carbanak_string2 = "Bargaining active"
 		$carbanak_string3 = "200416180203Z"
 		$carbanak_string4 = "www.bargaining-active.com"
-		
+
     condition:
         all of them
 }
@@ -18,10 +18,10 @@ rule carbanak_string
 rule dlls
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect DLLs associated with Java-Update.exe"
-	
+
     strings:
         $dlls1 = "kernel32.dll" nocase
 		$dlls2 = "advapi32.dll" nocase
@@ -42,10 +42,10 @@ rule dlls
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with Java-Update"
-	
+
     strings:
 		$functions1 = "AddMandatoryAce"
 		$functions2 = "AdjustTokenPrivileges"

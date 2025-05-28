@@ -11,10 +11,10 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 var baseURL string = "http://127.0.0.1:9999/api/v1.0/"

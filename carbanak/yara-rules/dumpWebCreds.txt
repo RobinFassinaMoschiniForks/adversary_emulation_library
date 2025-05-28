@@ -2,10 +2,10 @@ rule dumpwebcreds
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with dumpWebCreds.exe"
-	
+
     strings:
         $string1 = "<GetCreds>g__GetVaultElementValue|0_0"
         $string3 = "VAULT_SCHEMA_ELEMENT_ID"

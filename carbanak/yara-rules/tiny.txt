@@ -1,10 +1,10 @@
 rule usage
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect terms from usage section of tiny.exe"
-	
+
     strings:
         $usage1 = "tiny.exe" nocase
 		$usage2 = "lhost" nocase
@@ -17,10 +17,10 @@ rule usage
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with tiny.exe"
-	
+
     strings:
         $function1 = "DeleteCriticalSection"
 		$function2 = "EnterCriticalSection"
@@ -57,10 +57,10 @@ rule functions
 rule tiny_strings
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with tiny.exe"
-	
+
     strings:
         $string1 = "WVSH"
 		$string2 = "UATWVSH"
@@ -79,10 +79,10 @@ rule tiny_strings
 rule errors
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect error outputs associated with tiny.exe"
-	
+
     strings:
 		$error1 = "Unable to initialize winsock"
 		$error2 = "Unable to get hostname"

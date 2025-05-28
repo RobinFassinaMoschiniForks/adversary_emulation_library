@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/tasks"
+	"attackevals.mitre.org/control_server/tasks"
 )
 
 // Session describes an agent connection to the C2 server

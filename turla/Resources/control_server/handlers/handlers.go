@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
 
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/carbon"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/epic"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/lightneuron"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/snake"
+	_ "attackevals.mitre.org/control_server/handlers/carbon"
+	_ "attackevals.mitre.org/control_server/handlers/epic"
+	_ "attackevals.mitre.org/control_server/handlers/lightneuron"
+	_ "attackevals.mitre.org/control_server/handlers/snake"
 )
 
 // StartHandlers starts the C2 handlers

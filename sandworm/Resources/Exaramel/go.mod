@@ -1,4 +1,4 @@
-module attackevals.mitre-engenuity.org/exaramel
+module attackevals.mitre.org/exaramel
 
 go 1.16
 

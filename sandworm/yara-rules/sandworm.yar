@@ -2,10 +2,10 @@ rule lazagne_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with lazagne.exe"
-	
+
     strings:
         $string1 = "lazagne" nocase
 		$string2 = "browsers" nocase
@@ -14,7 +14,7 @@ rule lazagne_strings
 		$string5 = "win32.hashdump" nocase
 		$string6 = "creddump7" nocase
         $string7 = "credfile" nocase
-		
+
     condition:
         all of them
 }
@@ -23,16 +23,16 @@ rule ExaramelLinux_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with Exaramel-Linux"
-	
+
     strings:
         $string1 = "attackevals" nocase
 		$string2 = "mitre-engenuity" nocase
 		$string3 = "exaramel" nocase
         $string4 = "sandworm" nocase
-		
+
     condition:
         all of them
 }
@@ -41,10 +41,10 @@ rule ExaramelWindows
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with ExaramelWindows"
-	
+
     strings:
         $string1 = "command-line-arguments" nocase
 		$string2 = "exaramel-windows" nocase
@@ -70,10 +70,10 @@ rule mslog_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with mslog.exe"
-	
+
     strings:
         $string1 = "_FindPESection" nocase
 		$string2 = "Could not open file" nocase
@@ -93,10 +93,10 @@ rule perfc_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with perfc.dat"
-	
+
     strings:
         $string1 = "6A2F1605C8391B7144D70E0CB99F5816C9EE549545097E40FA26077B292A28D2"
 		$string2 = "ATT&CK3valuat10n" nocase
@@ -110,10 +110,10 @@ rule wsmprovav_strings
 
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2022"
 		description = "Used to detect strings associated with wsmprovav.exe"
-	
+
     strings:
         $string1 = "Not enough arguments" nocase
 		$string2 = "192.168.0.4" nocase

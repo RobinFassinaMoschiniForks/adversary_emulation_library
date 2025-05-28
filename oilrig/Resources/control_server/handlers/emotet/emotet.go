@@ -19,10 +19,10 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
+
 )
 
 // enum of command id's for reference
@@ -77,7 +77,7 @@ func EncryptEncode(payload string) string {
 	h := sha1.New()
 	io.WriteString(h, payload)
 	hash := fmt.Sprintf("%x", h.Sum(nil))
-	
+
 	// Padding
 	for  {
 		if (len(payload)%aes.BlockSize) != 0 {
@@ -193,7 +193,7 @@ func DecodeDecrypt(ciphertext []byte) string {
 	}
 
 	ciphertext = []byte(ciphertextStr)
-	
+
 	if len(ciphertext)%aes.BlockSize != 0 {
 		fmt.Printf("error: ciphertext is not a multiple of the block size %d",len(ciphertext) )
 	}
@@ -205,7 +205,7 @@ func DecodeDecrypt(ciphertext []byte) string {
 
 	// trim padding
 	plaintext := trimPadding(string(ciphertext), hashStr)
-	
+
 	if len(plaintext) > 0 {
 		return plaintext
 	}
@@ -231,7 +231,7 @@ func (e *EmotetHandler) StartHandler(restAddress string, configEntry config.Hand
 	//r.HandleFunc("/putFile/{fileName}", PostFileToServer).Methods("POST")
 
 	r.HandleFunc(serveModuleRoute, ServeModule).Methods("GET")
-	
+
 	server := &http.Server{
 		Addr:         listenAddr,
 		WriteTimeout: time.Second * 15,
@@ -406,7 +406,7 @@ func postTaskOutput(w http.ResponseWriter, r *http.Request) {
 	// GUID
 	guid := strings.Split(decryptedBody, ":")[0]
 	taskOutput := decryptedBody
-	
+
 	if (len(guid) == 0) {
 		http.Error(w, "can't read guid", http.StatusBadRequest)
 	}

@@ -3,7 +3,7 @@ package execute_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/execute"
+	"attackevals.mitre.org/exaramel-windows/execute"
 )
 
 func TestExecShellCommand(t *testing.T) {

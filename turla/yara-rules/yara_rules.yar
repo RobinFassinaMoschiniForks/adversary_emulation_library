@@ -1,6 +1,6 @@
 rule carbon_dropper {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This is a YARA rule to detect the Carbon Dropper used to install persistence with C2 comms over HTTP."
     tool        = "Carbon Dropper"
@@ -36,7 +36,7 @@ condition:
 
 rule epic_dropper {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This is a YARA rule to detect the Epic Dropper used to install persistence with C2 comms over HTTP or HTTPS."
     tool        = "EPIC HTTP Dropper"
@@ -69,7 +69,7 @@ condition:
 
 rule keylogger {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This YARA rule is to detect the Keylogger"
     tool        = "Keylogger"
@@ -92,7 +92,7 @@ condition:
 
 rule snake {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This is a YARA rule to detect the Snake Installer which communicates with the C2 server over HTTP."
     tool        = "Snake"
@@ -131,7 +131,7 @@ condition:
 
 rule ln_transport_agent {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This is a YARA rule to detect the LightNeuron transport agent used to collect emails on an Exchange server"
     tool        = "LightNeuron Transport Agent DLL"
@@ -155,7 +155,7 @@ condition:
 
 rule ln_installer_aux {
 meta:
-    author      = "MITRE Engenuity"
+    author      = "The MITRE Corporation"
     date        = "2023-08-15"
     description = "This is a YARA rule to detect the LightNeuron companion DLL which"
     description = "  uses steganography to extract commands from emails coming from"

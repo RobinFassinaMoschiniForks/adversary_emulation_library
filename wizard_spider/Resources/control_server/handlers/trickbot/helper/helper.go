@@ -4,7 +4,7 @@ import (
 	"strings"
 	"strconv"
 	"encoding/json"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/logger"
 )
 
 type RegistrationData struct {

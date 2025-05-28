@@ -1,10 +1,10 @@
 rule babymetal_strings
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings found in babymetal.dll"
-	
+
     strings:
         $babymetal_strings1 = "babymetal" nocase
 		$babymetal_strings2 = "abort"
@@ -44,10 +44,10 @@ rule babymetal_strings
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with babymetal.dll"
-	
+
     strings:
         $functions1 = "DeleteCriticalSection"
 		$functions2 = "EnterCriticalSection"

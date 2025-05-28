@@ -1,10 +1,10 @@
 rule output
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect output from hollow.exe"
-	
+
     strings:
         $output1 = "[---> Process Hollow  <---]"
 		$output2 = "[*] Running the target executable (%s)"
@@ -29,10 +29,10 @@ rule output
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect funtions associated with hollow.exe"
-	
+
     strings:
 		$function1 = "GetLastError"
 		$function2 = "VirtualAllocEx"
@@ -73,10 +73,10 @@ rule functions
 rule hollow_strings
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "7/17/2020"
 		description = "Used to detect strings associated with hollow.exe"
-	
+
     strings:
         $string1 = "PAYLOAD:"
 		$string2 = "ntdll.dll"

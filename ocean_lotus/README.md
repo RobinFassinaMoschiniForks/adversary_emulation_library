@@ -1,7 +1,7 @@
 # OceanLotus
 
 Based on open-source intelligence, the [Center for Threat-Informed
-Defense](https://mitre-engenuity.org/cybersecurity/center-for-threat-informed-defense/)
+Defense](https://ctid.mitre.org)
 team created the below scenario leveraging techniques seen from OceanLotus in the wild.
 We have adapted the scenario based on tools and resources available at the time.
 
@@ -92,7 +92,7 @@ documentation for the respective implant.
 
 We 💖 feedback! Let us know how using this plan has helped you and what we can do better.
 
-Email: ctid@mitre-engenuity.org <br>
+Email: ctid@mitre.org <br>
 LinkedIn: https://www.linkedin.com/showcase/center-for-threat-informed-defense/
 
 Also see the guidance for contributors if are you interested in contributing or simply
@@ -127,7 +127,7 @@ enable others to become familiar with our code base. Happy hacking!
 Please submit
 [issues](https://github.com/center-for-threat-informed-defense/ocean-lotus/issues) for
 any technical questions/concerns or contact
-[ctid@mitre-engenuity.org](mailto:ctid@mitre-engenuity.org?subject=subject=Question%20about%20ocean-lotus)
+[ctid@mitre.org](mailto:ctid@mitre.org?subject=subject=Question%20about%20ocean-lotus)
 directly for more general inquiries. If you wish to contribute, please review
 [CONTRIBUTING.md.](/CONTRIBUTING.md)
 
@@ -138,7 +138,7 @@ purposes of assessing security posture and/or research.
 
 ## Notice
 
-Copyright 2023 MITRE Engenuity. Approved for public release. Document number CT0084
+Copyright 2023 The MITRE Corporation. Approved for public release. Document number CT0084
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
 file except in compliance with the License. You may obtain a copy of the License

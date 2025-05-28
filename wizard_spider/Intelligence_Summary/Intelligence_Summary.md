@@ -18,23 +18,23 @@ Associated Names: UNC1878, TEMP.MixMaster, Grim Spider, Team9 
 
 ## Group Overview Report References 🔗
 
-| ID | Report Links |
-| :-----------: | ----------- |
-|1|https://attack.mitre.org/groups/G0102/
-|2|https://www.trendmicro.com/en_us/research/19/b/trickbot-adds-remote-application-credential-grabbing-capabilities-to-its-repertoire.html
-|3|[JISC Report](/Resources/images/Trickbot_analysis_and_mitigation_Jisc%20community.pdf)
-|4|https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/
-|5|https://www.bleepingcomputer.com/news/security/uhs-hospitals-hit-by-reported-country-wide-ryuk-ransomware-attack/campaign/#:~:text=SandWorm%20is%20an%20APT%20group,aggressive%20and%20sometimes%20destructive%20cyberattacks.
-|6|https://www.upi.com/Top_News/US/2019/07/08/Ransom-hackers-hit-Georgia-courts-after-cities-pay-1M/4111562116580/
-|7|https://www.youtube.com/watch?v=LUxOcpIRxmg
-|8|https://www.cybersecuritydive.com/news/Ryuk-FBI-DHS-ransomware-healthcare/587961/
-|9|https://intel471.com/blog/ransomware-as-a-service-2020-ryuk-maze-revil-egregor-doppelpaymer/
+|  ID   | Report Links                                                                                                                                                                                                                   |
+| :---: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|   1   | https://attack.mitre.org/groups/G0102/                                                                                                                                                                                         |
+|   2   | https://www.trendmicro.com/en_us/research/19/b/trickbot-adds-remote-application-credential-grabbing-capabilities-to-its-repertoire.html                                                                                        |
+|   3   | [JISC Report](/Resources/images/Trickbot_analysis_and_mitigation_Jisc%20community.pdf)                                                                                                                                         |
+|   4   | https://www.crowdstrike.com/blog/big-game-hunting-with-ryuk-another-lucrative-targeted-ransomware/                                                                                                                             |
+|   5   | https://www.bleepingcomputer.com/news/security/uhs-hospitals-hit-by-reported-country-wide-ryuk-ransomware-attack/campaign/#:~:text=SandWorm%20is%20an%20APT%20group,aggressive%20and%20sometimes%20destructive%20cyberattacks. |
+|   6   | https://www.upi.com/Top_News/US/2019/07/08/Ransom-hackers-hit-Georgia-courts-after-cities-pay-1M/4111562116580/                                                                                                                |
+|   7   | https://www.youtube.com/watch?v=LUxOcpIRxmg                                                                                                                                                                                    |
+|   8   | https://www.cybersecuritydive.com/news/Ryuk-FBI-DHS-ransomware-healthcare/587961/                                                                                                                                              |
+|   9   | https://intel471.com/blog/ransomware-as-a-service-2020-ryuk-maze-revil-egregor-doppelpaymer/                                                                                                                                   |
 
 
 ## Connect with us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
-Email: <evals@mitre-engenuity.org><br>
+Email: <evals@mitre.org><br>
 Twitter: https://twitter.com/MITREengenuity<br>
 LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>

@@ -7,12 +7,12 @@
                   base64 encodes the script.
                   The configuration feature replaces variables such as $URL and
                   $outfile with their plaintext values, as specified in a config file.
-   
+
         Version:  1.0
         Created:  March 12th, 2021
 
       Author(s):  Michael C. Long II
-   Organization:  MITRE Engenuity
+   Organization:  The MITRE Corporation
 
   References(s): N/A
 """

@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/exaramel/configur"
-	"attackevals.mitre-engenuity.org/exaramel/logger"
-	"attackevals.mitre-engenuity.org/exaramel/networker"
+	"attackevals.mitre.org/exaramel/configur"
+	"attackevals.mitre.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/networker"
 	"github.com/google/shlex"
 )
 

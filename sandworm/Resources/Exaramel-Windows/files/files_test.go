@@ -3,7 +3,7 @@ package files_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/files"
+	"attackevals.mitre.org/exaramel-windows/files"
 )
 
 func TestListFilesRecursive(t *testing.T) {

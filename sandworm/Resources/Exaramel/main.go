@@ -5,10 +5,10 @@ import (
 	"os"
 	"time"
 
-	"attackevals.mitre-engenuity.org/exaramel/configur"
-	"attackevals.mitre-engenuity.org/exaramel/logger"
-	"attackevals.mitre-engenuity.org/exaramel/networker"
-	"attackevals.mitre-engenuity.org/exaramel/scheduler"
+	"attackevals.mitre.org/exaramel/configur"
+	"attackevals.mitre.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/networker"
+	"attackevals.mitre.org/exaramel/scheduler"
 )
 
 // Main loop, initializes configuration, sends initial authentication beacon, and then starts main loop.

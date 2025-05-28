@@ -1,7 +1,7 @@
  # ---------------------------------------------------------------------------
  # gen_h_file.py - Generate xor-ed versions of Snake binaries
 
- # Copyright 2023 MITRE Engenuity. Approved for public release. Document number CT0005.
+ # Copyright 2023 The MITRE Corporation. Approved for public release. Document number CT0005.
  # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
  # http://www.apache.org/licenses/LICENSE-2.0
@@ -9,13 +9,13 @@
  # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  # This project makes use of ATT&CK®
- # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
- 
+ # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
+
  # Usage: python3 gen_h_file <input-filename> <output-filename> [hfile|bin]
- 
+
  # Revision History:
- 
- # --------------------------------------------------------------------------- 
+
+ # ---------------------------------------------------------------------------
 
 import sys
 
@@ -39,7 +39,7 @@ def xor_bytes_to_bin(fname, outfile=None):
     if (outfile):
         with open(outfile,"wb") as f:
             f.write(ba)
-    
+
     return ba
 
 def xor_bytes_to_hfile(fname,outfile):
@@ -62,7 +62,7 @@ def xor_bytes_to_hfile(fname,outfile):
         f.write("inline unsigned char DllPayload_dll[] = {")
 
         binLen = len(bin_arr)
-        
+
         # writes our list as a usable C array
         for i in range(binLen):
             if (i % 12 == 0):
@@ -74,8 +74,8 @@ def xor_bytes_to_hfile(fname,outfile):
                 f.write(",")
                 if (i % 12 != 11):
                     f.write(" ")
-            
-        
+
+
         f.write("};\n")
         f.write("inline unsigned int DllPayload_dll_len = %d;\n" % len(bin_arr))
 

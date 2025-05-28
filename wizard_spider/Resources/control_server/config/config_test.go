@@ -3,7 +3,7 @@ package config_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
+	"attackevals.mitre.org/control_server/config"
 )
 
 func TestSetRestAPIConfig(t *testing.T) {

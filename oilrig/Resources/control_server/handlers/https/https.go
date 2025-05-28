@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/sslcerts"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/sslcerts"
 	"github.com/gorilla/mux"
 )
 
@@ -34,7 +34,7 @@ func (h *HttpsHandler) StartHandler(restAddress string, configEntry config.Handl
 		return err
 	}
 	logger.Info("Starting HTTPS Handler")
-	
+
 	certFile, ok := configEntry["cert_file"]
 	if !ok {
 		certFile = ""

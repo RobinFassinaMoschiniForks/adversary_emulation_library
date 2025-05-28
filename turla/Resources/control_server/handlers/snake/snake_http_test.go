@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 const (
@@ -74,7 +74,7 @@ UAhWRFtVRxMGBQgE
     dummyLogDataHash = "7a17fb3a0fb26bdb9f53c252baeb6af1"
     dummyPlaintextData = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     dummyCiphertextBase64 = "fQlLVV4QXEMZGQtBDhwHAxgTSllFGVFcVgFYEFpXC0RSGxwJFR8ZTBAUBgocFQwOBg4WUV5ZTRRDEQgAQQ8OTgEYHBwVWlcWTFxVGgYDShkLVVldWxcYAx9FAAAQXlhSWUMDGVVHEFFcBgMUBEoeCgsEUhlRXVBBRFJbVGVNGABZXhVIDQVKBgUfGQJaAwMBDgkEGhRDRVBLQwwCFxUZFApEFBEKClZaQllNUQUHUR8cCVddWl1TAQwJCgcdQxJXWUVYRkxEE1FZWhsZDxFKFhNMD1IZU15UXV5XGlRTVlYWUkYNCRhPSi8ZGANPGwASCkcBG0NGVxBdVw8NH0QIBUEcAQEbChBQXVJdS1EeSRgEUBNZXExCBwwZDkUDEVxbTRBTQhVcEFBZWV8fAUYFBR8EHg8TXEURX0VWWhQAEFdNCVtWWBgNEwMKGAQCQVowHgwCGB1TQUAQSlENFk0LAggACwcQHU8bQENfXFhMCx1RBB8LFkBLXRoJCAURWVRDR1dEFlgIGVNGXEVSSh0TCEocDQoDUFBREV1VQlYHAV5NGAhYWxQBGEELBQUcUAYeVQMcE0gFV1ZdQkxVTQ=="
-    
+
 )
 
 // exampleBeacon shows how to construct a well formed beacon
@@ -175,7 +175,7 @@ func sendImplantBeacon(t *testing.T, guid string) []byte {
 
 func setTask(task string, guid string) (string, error) {
     url := restAPIBaseURL + "session/" + guid + "/task"
-    
+
     // setup HTTP POST request
     req, err := http.NewRequest("POST", url, bytes.NewBufferString(task))
     if err != nil {
@@ -216,9 +216,9 @@ func TestHandleHeartbeat(t *testing.T) {
     // start REST API
     startRESTAPI(t)
     defer stopRESTAPI(t)
-    
+
     handler := generateMockedSnakeHandler()
-    
+
     // start handler
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
@@ -234,7 +234,7 @@ func TestHasImplantSessionAndStoreImplantSession(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     if handler.hasImplantSession("bogus-id") {
         t.Error("Implant bogus-id should not have an active session.")
     }
@@ -270,12 +270,12 @@ func TestHandleBeaconBasic(t *testing.T) {
     // start REST API
     startRESTAPI(t)
     defer stopRESTAPI(t)
-    
+
     // Start handler
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     if handler.hasImplantSession(exampleBeacon.GUID) {
         t.Error("Implant should not have an active session before sending first beacon")
     }
@@ -285,12 +285,12 @@ func TestHandleBeaconBasic(t *testing.T) {
     if string(body) != emptyTaskWant {
         t.Errorf("Got '%v' expected '%s'", body, emptyTaskWant)
     }
-    
+
     // make sure session was added
     if !handler.hasImplantSession(exampleBeacon.GUID) {
         t.Error("Expected session to be stored in handler.")
     }
-    
+
     // Test subsequent beacons with empty task responses
     for i := 1; i <= 10; i++ {
         body = sendImplantBeacon(t, exampleBeacon.GUID)
@@ -298,43 +298,43 @@ func TestHandleBeaconBasic(t *testing.T) {
             t.Errorf("Got '%v' expected '%s'", body, emptyTaskWant)
         }
     }
-    
+
     // cmd task
     setAndGetTaskCheckOutput(t, cmdTask, exampleBeacon.GUID, cmdTaskWant)
-    
+
     // No task available
     body = sendImplantBeacon(t, exampleBeacon.GUID)
     if string(body) != emptyTaskWant {
         t.Errorf("Got '%v' expected '%s'", string(body), emptyTaskWant)
     }
-    
+
     // cmd task to run as diff user
     setAndGetTaskCheckOutput(t, cmdTaskRunas, exampleBeacon.GUID, cmdTaskRunasWant)
-    
+
     // psh task
     setAndGetTaskCheckOutput(t, pshTask, exampleBeacon.GUID, pshTaskWant)
-    
+
     // psh task to run as diff user
     setAndGetTaskCheckOutput(t, pshTaskRunas, exampleBeacon.GUID, pshTaskRunasWant)
-    
+
     // proc task just binary
     setAndGetTaskCheckOutput(t, procTaskOnlyBinary, exampleBeacon.GUID, procTaskOnlyBinaryWant)
-    
+
     // proc task with args
     setAndGetTaskCheckOutput(t, procTaskWithArgs, exampleBeacon.GUID, procTaskWithArgsWant)
-    
+
     // proc task with args, ruj as diff user
     setAndGetTaskCheckOutput(t, procTaskWithArgsRunas, exampleBeacon.GUID, procTaskWithArgsRunasWant)
-    
+
     // upload logs task
     setAndGetTaskCheckOutput(t, uploadLogsTask, exampleBeacon.GUID, uploadLogsTaskWant)
-    
+
     // payload download task
     setAndGetTaskCheckOutput(t, payloadTask, exampleBeacon.GUID, payloadTaskWant)
-    
+
     // file upload task
     setAndGetTaskCheckOutput(t, uploadFileTask, exampleBeacon.GUID, uploadFileTaskWant)
-    
+
     // Bad Task type code
     _, err := setTask(invalidTaskBadCode, exampleBeacon.GUID)
     if err != nil {
@@ -344,7 +344,7 @@ func TestHandleBeaconBasic(t *testing.T) {
     if string(body) != serverErrMsg {
         t.Errorf("Got '%s' expected '%s'", string(body), serverErrMsg)
     }
-    
+
     // Bad Task insufficient args
     _, err = setTask(invalidTaskSingleToken, exampleBeacon.GUID)
     if err != nil {
@@ -370,7 +370,7 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     // Test getting task for nonexistent implant session
     want := fmt.Sprintf("No existing session for implant %s.", exampleBeacon.GUID)
     response, err := handler.convertTaskToResponse(exampleBeacon.GUID, cmdTask)
@@ -385,10 +385,10 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
         }
     }
     handler.storeImplantSession(exampleBeacon.GUID)
-    
+
     // First task
     convertAndCheckTask(handler, t, exampleBeacon.GUID, cmdTask, cmdTaskWant)
-    
+
     // Empty task
     response, err = handler.convertTaskToResponse(exampleBeacon.GUID, "")
     if response != emptyTaskWant {
@@ -397,34 +397,34 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
     if err != nil {
         t.Errorf("Expected no error, got: %s", err.Error())
     }
-    
+
     // Second Task
     convertAndCheckTask(handler, t, exampleBeacon.GUID, pshTask, pshTaskWant)
-    
+
     // payload task
     convertAndCheckTask(handler, t, exampleBeacon.GUID, payloadTask, payloadTaskWant)
-    
+
     // proc task just binary
     convertAndCheckTask(handler, t, exampleBeacon.GUID, procTaskOnlyBinary, procTaskOnlyBinaryWant)
-    
+
     // proc task with args
     convertAndCheckTask(handler, t, exampleBeacon.GUID, procTaskWithArgs, procTaskWithArgsWant)
-    
+
     // Upload file task
     convertAndCheckTask(handler, t, exampleBeacon.GUID, uploadFileTask, uploadFileTaskWant)
-    
+
     // upload logs task
     convertAndCheckTask(handler, t, exampleBeacon.GUID, uploadLogsTask, uploadLogsTaskWant)
-    
+
     // cmd task to run as diff user
     convertAndCheckTask(handler, t, exampleBeacon.GUID, cmdTaskRunas, cmdTaskRunasWant)
-    
+
     // psh task to run as diff user
     convertAndCheckTask(handler, t, exampleBeacon.GUID, pshTaskRunas, pshTaskRunasWant)
-    
+
     // proc with args task to run as diff user
     convertAndCheckTask(handler, t, exampleBeacon.GUID, procTaskWithArgsRunas, procTaskWithArgsRunasWant)
-    
+
     // Bad task type code
     response, err = handler.convertTaskToResponse(exampleBeacon.GUID, invalidTaskBadCode)
     want = "Unsupported task code 22"
@@ -438,7 +438,7 @@ func TestConvertTaskToResponseBasic(t *testing.T) {
             t.Errorf("Expected error message: %s; got: %s", want, err.Error())
         }
     }
-    
+
     // bad task - not enough args
     response, err = handler.convertTaskToResponse(exampleBeacon.GUID, invalidTaskSingleToken)
     want = "Task code 01 requires a command"
@@ -486,7 +486,7 @@ func sendPostAndCheckResponse(t *testing.T, url string, output []byte, expectedR
 func TestPostCommandOutputToServer(t *testing.T) {
     testInstructionId := "555555555555555555"
     dummyOutputData := []byte{0x45,0x0c,0x24,0x40,0x55,0x1c,0x47,0x4a,0x44,0x29,0x1a,0x51,0x53,0x0e,0x1b,0x0f,0x0e,0x0e,0x4c,0x27,0x1e,0x08,0x19,0x55,0x28,0x53,0x6a,0x16,0x00,0x21,0x19,0x41,0x19}
-    
+
     // set current working directory to main repo directory to access ./files
     cwd, _ := os.Getwd()
     os.Chdir("../../")
@@ -499,13 +499,13 @@ func TestPostCommandOutputToServer(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     // Send Beacon to establish session. Expecting empty-task response
     body := sendImplantBeacon(t, exampleBeacon.GUID)
     if string(body) != emptyTaskWant {
         t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
     }
-    
+
     // set instruction for task
     setAndGetTaskCheckOutput(t, pshTask, exampleBeacon.GUID,  pshTaskWant)
 
@@ -515,7 +515,7 @@ func TestPostCommandOutputToServer(t *testing.T) {
 
 func TestUploadFile(t *testing.T) {
     testInstructionId := "555555555555555555"
-    
+
     // set current working directory to main repo directory to access ./files
     cwd, _ := os.Getwd()
     os.Chdir("../../")
@@ -528,16 +528,16 @@ func TestUploadFile(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     // Send Beacon to establish session. Expecting empty-task response
     body := sendImplantBeacon(t, exampleBeacon.GUID)
     if string(body) != emptyTaskWant {
         t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
     }
-    
+
     // set instruction for upload
     setAndGetTaskCheckOutput(t, uploadFileTask, exampleBeacon.GUID, uploadFileTaskWant)
-    
+
     // read file data for upload
     testFile := "./test_payloads/hello_world.elf"
     fileNameOnUpload := "testfile.bin"
@@ -548,12 +548,12 @@ func TestUploadFile(t *testing.T) {
 
     // perform upload
     sendPostAndCheckResponse(t, uploadBaseURL + testInstructionId, xorData(fileData), "1", 200)
-    
+
     // confirm file made it to disk properly and verify hash
     compareUploadedFile(t, fileNameOnUpload, helloWorldElfHash)
 }
 
-func TestUploadLogs(t *testing.T) {    
+func TestUploadLogs(t *testing.T) {
     // set current working directory to main repo directory to access ./files
     cwd, _ := os.Getwd()
     os.Chdir("../../")
@@ -566,31 +566,31 @@ func TestUploadLogs(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     // Send Beacon to establish session. Expecting empty-task response
     body := sendImplantBeacon(t, exampleBeacon.GUID)
     if string(body) != emptyTaskWant {
         t.Errorf("Got '%s' expected '%s'", string(body), emptyTaskWant)
     }
-    
+
     // set instruction for uploading logs
     setAndGetTaskCheckOutput(t, uploadLogsTask, exampleBeacon.GUID, uploadLogsTaskWant)
-    
+
     // read file data for upload
     encoded := []byte(encodedEncryptedLogData)
 
     // perform upload for c2 log file
     sendPostAndCheckResponse(t, uploadBaseURL + c2LogId, encoded, "1", 200)
     compareUploadedFile(t, c2LogFileNameWant, dummyLogDataHash)
-    
+
     // perform upload for execution log file
     sendPostAndCheckResponse(t, uploadBaseURL + executionLogId, encoded, "1", 200)
     compareUploadedFile(t, executionLogFileNameWant, dummyLogDataHash)
-    
+
     // perform upload for pipe server log file
     sendPostAndCheckResponse(t, uploadBaseURL + pipeServerLogId, encoded, "1", 200)
     compareUploadedFile(t, pipeServerLogFileNameWant, dummyLogDataHash)
-    
+
     // perform upload for pipe client log file
     sendPostAndCheckResponse(t, uploadBaseURL + pipeClientLogId, encoded, "1", 200)
     compareUploadedFile(t, pipeClientLogFileNameWant, dummyLogDataHash)
@@ -603,7 +603,7 @@ func compareUploadedFile(t *testing.T, targetName string, targetHash string) {
     if err != nil {
         t.Error(err)
     }
-    
+
     h := md5.Sum(uploadedData)
     actualHash := hex.EncodeToString(h[:])
     if targetHash != actualHash {
@@ -634,7 +634,7 @@ func TestDownloadPayload(t *testing.T) {
     handler := generateMockedSnakeHandler()
     startSnakeHttpHandler(handler, t)
     defer stopSnakeHttpHandler(handler, t)
-    
+
     // Send Beacon to establish session. Expecting empty-task response
     body := sendImplantBeacon(t, exampleBeacon.GUID)
     if string(body) != emptyTaskWant {
@@ -658,7 +658,7 @@ func TestDownloadPayload(t *testing.T) {
     if string(body) != serverErrMsg {
         t.Errorf("Expected message %s; got %s", serverErrMsg, string(body))
     }
-    
+
     // register instruction for payload download
     setAndGetTaskCheckOutput(t, payloadTask, exampleBeacon.GUID, payloadTaskWant)
     resp2, err := http.Get(url)
@@ -666,7 +666,7 @@ func TestDownloadPayload(t *testing.T) {
         t.Error(err)
     }
     defer resp2.Body.Close()
-    
+
     // read test file bytes
     fileData, err := ioutil.ReadAll(resp2.Body)
     if err != nil {

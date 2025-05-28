@@ -8,11 +8,11 @@ import (
     "testing"
     "time"
 
-    "attackevals.mitre-engenuity.org/control_server/logger"
-    "attackevals.mitre-engenuity.org/control_server/restapi"
-    "attackevals.mitre-engenuity.org/control_server/sessions"
-    "attackevals.mitre-engenuity.org/control_server/test_utils"
-    "attackevals.mitre-engenuity.org/control_server/handlers/util" // avoid import loop
+    "attackevals.mitre.org/control_server/logger"
+    "attackevals.mitre.org/control_server/restapi"
+    "attackevals.mitre.org/control_server/sessions"
+    "attackevals.mitre.org/control_server/test_utils"
+    "attackevals.mitre.org/control_server/handlers/util" // avoid import loop
 )
 
 const (

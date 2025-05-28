@@ -3,8 +3,8 @@ package sessions_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/control_server/sessions"
-	"attackevals.mitre-engenuity.org/control_server/tasks"
+	"attackevals.mitre.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/tasks"
 )
 
 var mySession = sessions.Session{
@@ -99,7 +99,7 @@ func TestSetSessionTask(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	if expectedTask != *returnedTask {
 		t.Errorf("Expected return value of %v, got %v\n", expectedTask, returnedTask)
 	}
@@ -143,7 +143,7 @@ func TestBootstrapTask(t *testing.T) {
 	if len(currBootstrap) > 0 {
 		t.Errorf("Expected empty bootstrap task for %s, got: %s", handler, currBootstrap)
 	}
-	
+
 	sessions.SetBootstrapTask(handler, expectedTask)
 	currBootstrap = sessions.GetBootstrapTask(handler)
 	if currBootstrap != expectedTask {
@@ -153,7 +153,7 @@ func TestBootstrapTask(t *testing.T) {
 	if len(currBootstrap) > 0 {
 		t.Errorf("Expected empty bootstrap task for handler2, got: %s", currBootstrap)
 	}
-	
+
 	sessions.RemoveBootstrapTask(handler)
 	currBootstrap = sessions.GetBootstrapTask(handler)
 	if len(currBootstrap) > 0 {
@@ -174,7 +174,7 @@ func TestTaskOutput(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// test SetTaskOutput
 	expectedOutput := "user"
 	err = sessions.SetTaskOutput(mySession.GUID, expectedOutput, true)

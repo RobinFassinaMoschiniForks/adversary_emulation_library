@@ -11,13 +11,13 @@ import (
 	"strings"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/display"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	restapi_util "attackevals.mitre-engenuity.org/control_server/restapi/util"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
-	"attackevals.mitre-engenuity.org/control_server/tasks"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/display"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
+	restapi_util "attackevals.mitre.org/control_server/restapi/util"
+	"attackevals.mitre.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/tasks"
 	"github.com/gorilla/mux"
 )
 
@@ -62,10 +62,10 @@ func Start(listenAddress, payloadDir string) {
 		IdleTimeout:  time.Second * 60,
 		Handler:      r,
 	}
-	
+
 	// set CALDERA forwarding endpoint
 	CalderaForwardingEndpoint = config.GetRestAPICalderaForwardingAddress() + "/beacons"
-	
+
 	// start rest api in goroutine so it doesn't block
 	go func() {
 		err := Server.ListenAndServe()
@@ -178,7 +178,7 @@ func GetSessionByGuid(w http.ResponseWriter, r *http.Request) {
         w.Write(restapi_util.CreateStringResponseJSON(restapi_util.RESP_TYPE_CTRL, restapi_util.RESP_STATUS_FAILURE, err.Error()))
 		return
 	}
-	
+
 	// send session list to client - will contain 1 element
 	resp := restapi_util.CreateSessionsResponseJSON(restapi_util.RESP_STATUS_SUCCESS, []sessions.Session{retSession})
     w.Write(resp)
@@ -241,7 +241,7 @@ func GetTaskCommandBySessionId(w http.ResponseWriter, r *http.Request) {
     // For now do not use JSON format because handlers currently expect just the task command string. TODO: change this and handler code later
 	if task != nil && task.Status == tasks.TASK_STATUS_NEW {
 		task.Status = tasks.TASK_STATUS_PENDING
-		
+
 		fmt.Fprintf(w, "%v", task.Command)
 	} else {
 		fmt.Fprint(w, "")
@@ -295,7 +295,7 @@ func GetBootstrapTask(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	handlerName := strings.ToLower(vars["handler"])
 	task := sessions.GetBootstrapTask(handlerName)
-	
+
 	// For now do not use JSON format because handlers currently expect just the task command string. TODO: change this and handler code later
 	fmt.Fprintf(w, "%v", task)
 }

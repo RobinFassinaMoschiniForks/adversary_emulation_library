@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/discovery"
+	"attackevals.mitre.org/exaramel-windows/discovery"
 )
 
 // Beacon shows how to construct a well formed beacon

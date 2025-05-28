@@ -1,6 +1,6 @@
 # Carbanak Adversary Emulation
 
-This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/carbanak-fin7/). It's format has been updated in collaboration with the [Center for Threat-Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) to consolidate MITRE Engenuity emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats. This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
+This adversary emulation plan is derived from the original [Carbanak](https://attack.mitre.org/groups/G0008/) content developed and used in the [2020 ATT&CK Evaluations](https://attackevals.mitre.org/carbanak-fin7/). It's format has been updated in collaboration with the [Center for Threat-Informed Defense](https://ctid.mitre.org/) to consolidate The MITRE Corporation emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats. This emulation plan has not been tested with CALDERA's Emu plugin and interoperability is not guaranteed.
 
 **Carbanak** is a threat group that has been found to target banks. It also refers to malware of the same name (Carbanak). It is sometimes referred to as FIN7, but these appear to be two groups using the same Carbanak malware and are therefore tracked separately.<sup>[1](https://www.fireeye.com/blog/threat-research/2017/03/fin7_spear_phishing.html) [2](https://www.fireeye.com/blog/threat-research/2017/04/fin7-phishing-lnk.html) [3](https://www.fireeye.com/blog/threat-research/2017/06/behind-the-carbanak-backdoor.html) [4](https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html) </sup>
 
@@ -69,7 +69,7 @@ Special thanks to the following projects for providing tools and source code tha
 This content is only to be used with appropriate prior, explicit authorization for the purposes of assessing security posture and/or research.
 
 ## Notice
-© 2021 MITRE Engenuity. Approved for Public Release. Document number AT0016
+© 2021 The MITRE Corporation. Approved for Public Release. Document number AT0016
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 

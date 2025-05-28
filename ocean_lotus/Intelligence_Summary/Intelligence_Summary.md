@@ -72,5 +72,5 @@ functionality.<sup>[9](https://blog.netlab.360.com/stealth_rotajakiro_backdoor_e
 ## Connect with us 🗨️
 We 💖 feedback! Let us know how using this plan has helped you and what we can do better.
 
-Email: ctid@mitre-engenuity.org <br>
+Email: ctid@mitre.org <br>
 LinkedIn: https://www.linkedin.com/showcase/center-for-threat-informed-defense/

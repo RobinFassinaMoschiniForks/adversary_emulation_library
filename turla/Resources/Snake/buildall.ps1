@@ -1,7 +1,7 @@
  # ---------------------------------------------------------------------------
  # buildall.ps1 - Builds all Snake components
 
- # Copyright 2023 MITRE Engenuity. Approved for public release. Document number CT0005.
+ # Copyright 2023 The MITRE Corporation. Approved for public release. Document number CT0005.
  # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
  # http://www.apache.org/licenses/LICENSE-2.0
@@ -9,13 +9,13 @@
  # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  # This project makes use of ATT&CK®
- # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
- 
- # Usage: powershell .\buildall.ps1 -c2Ip "10.0.2.11" -c2Port 8080 -homeDir "C:\\Users\\Public\\testing" -driverConfig "Release" -driverPlatform "x64" 
- 
+ # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
+
+ # Usage: powershell .\buildall.ps1 -c2Ip "10.0.2.11" -c2Port 8080 -homeDir "C:\\Users\\Public\\testing" -driverConfig "Release" -driverPlatform "x64"
+
  # Revision History:
- 
- # --------------------------------------------------------------------------- 
+
+ # ---------------------------------------------------------------------------
 
 <#
 .Description
@@ -98,7 +98,7 @@ if ($c2Ip){
         $homeDir = "C:\\Windows\\`$NtUninstallQ608317`$"
         Write-Host "Home directory not specified (-homeDir), using $homeDir"
     }
-    
+
     Set-Location($usermod_path)
 
     if (Test-Path $usermod_path\bin\$dllName){
@@ -117,7 +117,7 @@ if ($c2Ip){
     $params = "-s bin/$usermod_name"
     Cmd /c "$strip $params"
     Write-Host " Done"
-    
+
     # Remove any old DLL of the same name
     if (Test-Path $outdir\$dllName){
         Remove-Item $outdir\$dllName

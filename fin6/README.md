@@ -1,6 +1,6 @@
 # FIN6 Adversary Emulation
 
-This repository contains an adversary emulation plan for [FIN6](https://attack.mitre.org/groups/G0037/). This is the first emulation plan in a [library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library) published by the [Center for Threat Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) in cooperation with our participants. See our recent [blog](https://medium.com/mitre-engenuity/center-releases-fin6-adversary-emulation-plan-775d8c5ebe9b) announcing the release of this emulation plan and the [video walkthrough](https://www.youtube.com/watch?v=n5jeGSOyJzY&feature=youtu.be).
+This repository contains an adversary emulation plan for [FIN6](https://attack.mitre.org/groups/G0037/). This is the first emulation plan in a [library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library) published by the [Center for Threat Informed Defense](https://ctid.mitre.org/) in cooperation with our participants. See our recent [blog](https://medium.com/mitre-engenuity/center-releases-fin6-adversary-emulation-plan-775d8c5ebe9b) announcing the release of this emulation plan and the [video walkthrough](https://www.youtube.com/watch?v=n5jeGSOyJzY&feature=youtu.be).
 
 FIN6 is thought to be a financially motivated cyber-crime group. The group has aggressively targeted and compromised high-volume POS systems in the hospitality and retail sectors since at least 2015. FIN6 has targeted e-commerce sites and multinational organizations. Most of the group’s targets have been located in the United States and Europe, but include companies in Australia, Canada, Spain, India, Kazakhstan, Serbia, and China.<sup>[5](https://exchange.xforce.ibmcloud.com/threat-group/f8409554b71a79792ff099081bc5ac24)</sup>
 
@@ -31,7 +31,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-Copyright 2020 MITRE Engenuity. Approved for public release. Document number CT0006
+Copyright 2020 The MITRE Corporation. Approved for public release. Document number CT0006
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

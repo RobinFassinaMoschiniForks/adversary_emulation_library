@@ -1,4 +1,4 @@
-# Copyright (c) 2020, MITRE Engenuity. Approved for public release.
+# Copyright (c) 2020, The MITRE Corporation. Approved for public release.
 # See LICENSE for complete terms
 
 # pip install jsonschema ruamel.yaml

@@ -1,6 +1,6 @@
 # Creating Your Own Handler
 
-The Evals C2 server is designed with customization in mind. Developers can easily add new handlers to the C2 server, 
+The Evals C2 server is designed with customization in mind. Developers can easily add new handlers to the C2 server,
 and users can easily toggle which handlers to enable/disable and configure their settings. This guide describes how developers can add a new
 handler to the C2 server.
 
@@ -39,7 +39,7 @@ func init() {
 }
 ```
 
-Note that we use a factory method to return our struct - this gives us more flexibility if we need to add more 
+Note that we use a factory method to return our struct - this gives us more flexibility if we need to add more
 variables to our handler struct, and it allows easier handler creation in unit tests.
 
 `util.AvailableHandlers` maps handler names (`string`) to handler structs that implement the `util.Handler` interface. This means that our new handler
@@ -68,10 +68,10 @@ and to serve URL paths of our choice. Feel free to reference other handler imple
 There are two steps for registering our C2 handler - creating a configuration entry and making sure our handler package gets imported.
 
 ### Import Handler
-In order for the C2 server executable to incorporate our new handler code, we need to import the package so that the `init` function in our 
+In order for the C2 server executable to incorporate our new handler code, we need to import the package so that the `init` function in our
 handler source code runs. We can do this by adding a new import statement in `handler/handlers.go` (change your package name accordingly):
 ```
-_ "attackevals.mitre-engenuity.org/control_server/handlers/examplehttphandler"
+_ "attackevals.mitre.org/control_server/handlers/examplehttphandler"
 ```
 The `_` underscore in front of the import means that we're only importing the package for its side effects, in particular the `init` function.
 Remember that the `init` function is what stores our handler struct in the map of available handlers. `handlers.go` will not directly reference
@@ -79,7 +79,7 @@ individual C2 handlers, so we can't use a typical import.
 
 ### Config Entry
 `config/handler_config.yml` contains the configuration entries for all of the available handlers in the C2 server. Each entry is a dictionary that
-maps the handler name to an inner dictionary that maps a configuration setting name to its value. 
+maps the handler name to an inner dictionary that maps a configuration setting name to its value.
 
 For example:
 ```yaml
@@ -89,7 +89,7 @@ sidetwist:
   enabled: false
 ```
 
-In the above example, the handler name is `sidetwist`, and there are three configuration settings: 
+In the above example, the handler name is `sidetwist`, and there are three configuration settings:
 - `host` - the IP address that the handler should bind to when listening for C2 traffic
 - `port` - the port that the handler should listen on
 - `enabled`: whether or not the handler should run when the C2 server starts up.
@@ -108,13 +108,13 @@ examplehttphandler:
   enabled: true
 ```
 
-Note that we set `enabled` to `true` so that our handler will start up when the server is run. 
-We'll simply add the above entry at the end of `config/handler_config.yml`. 
+Note that we set `enabled` to `true` so that our handler will start up when the server is run.
+We'll simply add the above entry at the end of `config/handler_config.yml`.
 
 ## Unit Tests
-Don't forget your unit tests! You will need to create unit tests for your new handler and update existing unit tests in `handler/handlers_test.go` 
+Don't forget your unit tests! You will need to create unit tests for your new handler and update existing unit tests in `handler/handlers_test.go`
 to account for your newly available C2 handler:
-- The `TestStartStopHandlers` and `TestStartStopHandlersSomeEnabled` test functions will need to be updated so that the number of available C2 handlers reflects your newly added handler. 
+- The `TestStartStopHandlers` and `TestStartStopHandlersSomeEnabled` test functions will need to be updated so that the number of available C2 handlers reflects your newly added handler.
 - The auxiliary functions `mockHandlerConfigFileReaderAllEnabled` and `mockHandlerConfigFileReaderSomeEnabled` will also need to be updated to include dummy entries for your new handler.
 
 When ready, run `go test ./...` in the main control server repo directory to confirm that all your tests are working.

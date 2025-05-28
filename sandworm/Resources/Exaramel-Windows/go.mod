@@ -1,4 +1,4 @@
-module attackevals.mitre-engenuity.org/exaramel-windows
+module attackevals.mitre.org/exaramel-windows
 
 go 1.16
 

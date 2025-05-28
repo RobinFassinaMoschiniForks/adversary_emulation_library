@@ -12,10 +12,10 @@ import (
 	"strings"
 	"testing"
 	"time"
-	
-	"attackevals.mitre-engenuity.org/control_server/handlers/emotet"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
+
+	"attackevals.mitre.org/control_server/handlers/emotet"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/restapi"
 )
 
 var exampleBeacon = "emotetImplantExampleGUID:"
@@ -121,7 +121,7 @@ func TestGetTask(t *testing.T) {
 	defer stopEmotetHandler()
 
 	// Set dummy task
-	guidstripcolon := exampleBeacon[:len(exampleBeacon)-1] 
+	guidstripcolon := exampleBeacon[:len(exampleBeacon)-1]
 	registerURL := "http://" + restAPIlistenHost + "/api/v1.0/task/" + guidstripcolon
 
 	task := "testdummytask"

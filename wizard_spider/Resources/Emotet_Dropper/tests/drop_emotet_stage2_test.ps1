@@ -3,12 +3,12 @@
 #       Filename:  drop_emotet_stage2_test.ps1
 #
 #    Description:  This program tests functionality of drop_emotet_stage2.ps1.
-#   
+#
 #        Version:  1.1
 #        Created:  March 1st, 2021
 #
 #      Author(s):  Michael C. Long II
-#   Organization:  MITRE Engenuity
+#   Organization:  The MITRE Corporation
 #
 #  References(s): N/A
 #
@@ -114,7 +114,7 @@ function Invoke-UnitTest3 {
         Write-Failure -output_expected "NIL" -output_received $_.Exception.Message
     }
     Write-Success
-    
+
     Remove-Item encoded_emotet_stage2_dropper.ps1
 }
 

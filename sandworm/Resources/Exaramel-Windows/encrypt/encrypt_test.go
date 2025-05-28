@@ -3,7 +3,7 @@ package encrypt_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/encrypt"
+	"attackevals.mitre.org/exaramel-windows/encrypt"
 )
 
 func TestListFilesRecursive(t *testing.T) {

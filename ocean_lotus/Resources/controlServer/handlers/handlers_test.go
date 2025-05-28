@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
 )
 
 func mockHandlerConfigFileReaderAllEnabled(path string) ([]byte, error) {
-    dataStr := `simplehttp: 
+    dataStr := `simplehttp:
   host: 127.0.0.1
   port: 60001
   enabled: true
@@ -23,7 +23,7 @@ oceanlotus:
 }
 
 func mockHandlerConfigFileReaderSomeEnabled(path string) ([]byte, error) {
-    dataStr := `simplehttp: 
+    dataStr := `simplehttp:
   host: 127.0.0.1
   port: 60011
   enabled: true

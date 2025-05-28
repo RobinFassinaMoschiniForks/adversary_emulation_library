@@ -1,17 +1,17 @@
 # Blind Eagle
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-This repo contains the source code used to support the MITRE Engenuity's ATT&CK Evaluation team's 2023 BlackHat presentation 🎩 , [Becoming a Dark Knight: Adversary Emulation Demonstration for ATT&CK Evaluations](https://www.blackhat.com/us-23/briefings/schedule/#becoming-a-dark-knight-adversary-emulation-demonstration-for-attck-evaluations-33209). Using the Latin American threat actor known as Blind Eagle, the presentation provides an example of how our team develops adversary emulation plans and source code for MITRE Engenuity's ATT&CK Evaluation. This presentation is a point-in-time reference for our process which is constantly evolving. 
+This repo contains the source code used to support the The MITRE Corporation's ATT&CK Evaluation team's 2023 BlackHat presentation 🎩 , [Becoming a Dark Knight: Adversary Emulation Demonstration for ATT&CK Evaluations](https://www.blackhat.com/us-23/briefings/schedule/#becoming-a-dark-knight-adversary-emulation-demonstration-for-attck-evaluations-33209). Using the Latin American threat actor known as Blind Eagle, the presentation provides an example of how our team develops adversary emulation plans and source code for The MITRE Corporation's ATT&CK Evaluation. This presentation is a point-in-time reference for our process which is constantly evolving.
 
-Based on open-source intelligence, the ATT&CK Evaluation team created the below scenario leveraging techniques seen from Blind Eagle in the wild. We have adapted the scenario based on tools and resources available at the time. 
+Based on open-source intelligence, the ATT&CK Evaluation team created the below scenario leveraging techniques seen from Blind Eagle in the wild. We have adapted the scenario based on tools and resources available at the time.
 
 ## Adversary Overview 🙈 🦅
 
-Blind Eagle (APT-C-36, Águila Ciega, ATT&CK Group [G0099](https://attack.mitre.org/groups/G0099/)) is a Spanish-speaking threat actor that has been active since at least 2018.<sup>[1]</sup> 
+Blind Eagle (APT-C-36, Águila Ciega, ATT&CK Group [G0099](https://attack.mitre.org/groups/G0099/)) is a Spanish-speaking threat actor that has been active since at least 2018.<sup>[1]</sup>
 The group is believed to be based in South America, given their use of regional Spanish dialects and intimate knowledge of government agencies and other local institutions in the region. Targets are focused on Colombia-based institutions, including entities in the financial, manufacturing, and petroleum sectors.<sup>[2]</sup> However, this threat actor has also executed operations against victims throughout South America, Europe, the US, and Australia.<sup>[3] [4]</sup> While Blind Eagle tends to be largely opportunistic in their motives, they have conducted espionage operations as well.<sup>[5]</sup>
 
-Blind Eagle generally relies on commodity RATs, including Imminent Monitor, BitRAT, QuasarRAT, AsyncRAT, LimeRAT, and RemcosRAT.<sup>[6] [7] [8]</sup> This threat actor's campaigns often leverage spearphishing for initial access and the deployment of encrypted payloads.<sup>[2]</sup> 
-Additional common TTPs used by this threat actor include: use of malicious macros, process injection, and other LOTL techniques.<sup>[5] [9]</sup> The group also employs relatively strict targeting, and has been known to use link-shortening services that geoloate victims.<sup>[3]</sup> 
+Blind Eagle generally relies on commodity RATs, including Imminent Monitor, BitRAT, QuasarRAT, AsyncRAT, LimeRAT, and RemcosRAT.<sup>[6] [7] [8]</sup> This threat actor's campaigns often leverage spearphishing for initial access and the deployment of encrypted payloads.<sup>[2]</sup>
+Additional common TTPs used by this threat actor include: use of malicious macros, process injection, and other LOTL techniques.<sup>[5] [9]</sup> The group also employs relatively strict targeting, and has been known to use link-shortening services that geoloate victims.<sup>[3]</sup>
 
 [1]:https://attack.mitre.org/groups/G0099/
 [2]:https://web.archive.org/web/20190625182633/https://ti.360.net/blog/articles/apt-c-36-continuous-attacks-targeting-colombian-government-institutions-and-corporations-en/
@@ -53,18 +53,18 @@ python3 utilities/file-ops.py -flag
 - [Emulation Plan](./Emulation_Plan/README.md)
 
 ## For Analysts 🔎
-- [Operation Flow](./Operations_Flow/Operations_Flow.md) - High-level summary of the scenario & infrastructure with diagrams. 
-- [Intelligence Summary](./Intelligence_Summary/intelligence_summary.md) - General overview of the Adversary with links to reporting used throughout the scenario. 
+- [Operation Flow](./Operations_Flow/Operations_Flow.md) - High-level summary of the scenario & infrastructure with diagrams.
+- [Intelligence Summary](./Intelligence_Summary/intelligence_summary.md) - General overview of the Adversary with links to reporting used throughout the scenario.
 
 ## Acknowledgements 🤩
 
-We would like to formally thank the people that contributed to the content, review, and format of this document. This includes the MITRE Engenuity teams, ATT&CK Evaluation teams, the organizations and people that provided public intelligence and resources. Thank you! 🙌 🥰
+We would like to formally thank the people that contributed to the content, review, and format of this document. This includes the The MITRE Corporation teams, ATT&CK Evaluation teams, the organizations and people that provided public intelligence and resources. Thank you! 🙌 🥰
 
 ## Connect with us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
-Email: <ctid@mitre-engenuity.org><br>
+Email: <ctid@mitre.org><br>
 LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
 Twitter: https://twitter.com/MITREengenuity<br>
 
@@ -75,7 +75,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-© 2023 MITRE Engenuity, LLC.  Approved for Public Release. Document number CT0076
+© 2023 The MITRE Corporation, LLC.  Approved for Public Release. Document number CT0076
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

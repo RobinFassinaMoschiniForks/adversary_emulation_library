@@ -1,4 +1,4 @@
-© 2021 MITRE Engenuity. Approved for Public Release. Document number AT0016
+© 2021 The MITRE Corporation. Approved for Public Release. Document number AT0016
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

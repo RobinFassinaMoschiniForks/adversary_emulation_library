@@ -13,16 +13,16 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	restapi_util "attackevals.mitre-engenuity.org/control_server/restapi/util"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
-	"attackevals.mitre-engenuity.org/control_server/tasks"
-	"attackevals.mitre-engenuity.org/control_server/test_utils"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
+	restapi_util "attackevals.mitre.org/control_server/restapi/util"
+	"attackevals.mitre.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/tasks"
+	"attackevals.mitre.org/control_server/test_utils"
 )
 
-const ( 
+const (
     BASE_URL = "http://127.0.0.1:9999/api/v1.0/"
     PAYLOAD_TEST_DIR = "./test_payloads"
     TEST_SESSION_1_GUID = "test-session-1"
@@ -114,7 +114,7 @@ func startRESTapi(testConfigPath string) {
 func stopRESTapi() {
     // Clear sessions list in between tests
     sessions.SessionList = nil
- 
+
     time.Sleep(50 * time.Millisecond)
     Stop()
 }
@@ -226,7 +226,7 @@ func TestJsonMarshalIndentNoHtmlEncode(t *testing.T) {
   "data": "&<test encode>\ns"
 }
 `
-    
+
     encoded, err := restapi_util.JsonMarshalIndentNoHtmlEncode(toEncode)
     if err != nil {
         t.Error(err)
@@ -359,7 +359,7 @@ func TestGetSessions(t *testing.T) {
 
 	createTestSession(TEST_SESSION_1)
 	createTestSession(TEST_SESSION_2)
-	
+
 	url := BASE_URL + "sessions"
 	resp, err := http.Get(url)
 	if err != nil {
@@ -380,14 +380,14 @@ func TestGetSessions(t *testing.T) {
 	    Status: restapi_util.RESP_STATUS_SUCCESS,
 	    Data: TEST_RESP_SESSION_LIST,
 	}
-	
+
 	// ignore checkin times
 	// have to do by index because range will copy values
 	for i, _ := range apiResponse.Data{
 	    apiResponse.Data[i].FirstCheckIn = ""
 	    apiResponse.Data[i].LastCheckIn = ""
 	}
-	
+
 	if !reflect.DeepEqual(apiResponse, want) {
 		t.Errorf("Expected \"%v\", got \"%v\"", want, apiResponse)
 	}
@@ -420,13 +420,13 @@ func TestGetSessionByName(t *testing.T) {
 	        TEST_SESSION_1,
 	    },
 	}
-	
+
 	// ignore checkin times
 	for i, _ := range apiResponse.Data{
 	    apiResponse.Data[i].FirstCheckIn = ""
 	    apiResponse.Data[i].LastCheckIn = ""
 	}
-	
+
 	if !reflect.DeepEqual(apiResponse, want) {
 		t.Errorf("Expected \"%v\", got \"%v\"", want, apiResponse)
 	}
@@ -435,7 +435,7 @@ func TestGetSessionByName(t *testing.T) {
 func TestSetTaskBySessionId(t *testing.T) {
 	startRESTapi("")
 	defer stopRESTapi()
-	
+
 	createTestSession(TEST_SESSION_1)
 
 	// setup HTTP POST request
@@ -482,11 +482,11 @@ func TestSetTaskBySessionId(t *testing.T) {
 func TestGetTaskCommandBySessionId(t *testing.T) {
 	startRESTapi("")
 	defer stopRESTapi()
-	
+
 	// Set up session and task
 	createTestSession(TEST_SESSION_1)
 	createTestTaskForSession(TEST_SESSION_1_GUID, TEST_TASK_GUID, TEST_TASK_COMMAND)
-	
+
 	url := fmt.Sprintf("%ssession/%s/task", BASE_URL, TEST_SESSION_1_GUID)
 	resp, err := http.Get(url)
 	if err != nil {
@@ -521,7 +521,7 @@ func TestGetTaskCommandBySessionId(t *testing.T) {
 func TestBootstrapTask(t *testing.T) {
 	startRESTapi("")
 	defer stopRESTapi()
-	
+
 	// register dummy handler
 	handlerName := "testhandler"
 	util.RunningHandlers[handlerName] = nil
@@ -562,7 +562,7 @@ func TestBootstrapTask(t *testing.T) {
 	if string(body) != expectedOutput {
 		t.Errorf("Expected \"%v\", got \"%v\"", expectedOutput, string(body))
 	}
-	
+
 	getResp, err := http.Get(url)
 	if err != nil {
 		t.Error(err)
@@ -575,7 +575,7 @@ func TestBootstrapTask(t *testing.T) {
 	if string(taskData) != task {
 		t.Errorf("Expected '%v' got '%v'", task, string(taskData))
 	}
-	
+
 	delReq, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
 		t.Error(err)
@@ -639,7 +639,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if string(body) != expectedOutput {
 		t.Errorf("Expected \"%v\", got \"%v\"", expectedOutput, string(body))
 	}
-	
+
 	getResp, err := http.Get(url)
 	if err != nil {
 		t.Error(err)
@@ -652,7 +652,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if len(string(taskData)) > 0 {
 		t.Errorf("Expected empty task, got %s", string(taskData))
 	}
-	
+
 	delReq, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
 		t.Error(err)
@@ -665,7 +665,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if delResp.StatusCode != 500 {
 		t.Errorf("Expected error code 500, got %v", delResp.StatusCode)
 	}
-	
+
 	respData, err := ioutil.ReadAll(delResp.Body)
 	if err != nil {
 		t.Error(err)
@@ -729,15 +729,15 @@ func TestSetTaskOutputBySessionId(t *testing.T) {
 	if !reflect.DeepEqual(*(returnedSession.Task), TEST_FINISHED_TASK) {
 		t.Errorf("Expected \"%v\", got \"%v\"", TEST_FINISHED_TASK, *(returnedSession.Task))
 	}
-} 
+}
 
 func TestGetTaskOutputBySessionId(t *testing.T) {
 	startRESTapi("")
 	defer stopRESTapi()
-	
+
 	createTestSession(TEST_SESSION_1)
 	createTestTaskForSession(TEST_SESSION_1.GUID, TEST_FINISHED_TASK.GUID, TEST_FINISHED_TASK.Command)
-	
+
 	// set task output
 	url := BASE_URL + "session/" + TEST_SESSION_1.GUID + "/task/output"
 	req, err := http.NewRequest("POST", url, bytes.NewBufferString(TEST_TASK_OUTPUT))
@@ -773,7 +773,7 @@ func TestGetTaskOutputBySessionId(t *testing.T) {
 }
 `
     want := fmt.Sprintf(preformatted, TEST_TASK_OUTPUT)
-    
+
 	// The first request should return Task output
 	if string(apiResponse) != want{
 		t.Errorf("Expected '%v' got '%v'", want, string(apiResponse))
@@ -825,7 +825,7 @@ func TestRemoveSession(t *testing.T) {
 
 	createTestSession(TEST_SESSION_1)
 	url := BASE_URL + "session/delete/" + TEST_SESSION_1.GUID
-	
+
 	// setup HTTP POST request
 	req, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
@@ -939,7 +939,7 @@ func TestUploadFile(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	expectedOutput := `{
   "type": 0,
   "status": 0,
@@ -996,7 +996,7 @@ func TestGetTask(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	want := restapi_util.ApiTaskResponse{
 	    ResponseType: restapi_util.RESP_TYPE_TASK_INFO,
 	    Status: restapi_util.RESP_STATUS_SUCCESS,
@@ -1046,7 +1046,7 @@ func TestSetGetAndRemoveTaskOutput(t *testing.T) {
 	if !reflect.DeepEqual(*(returnedSession.Task), TEST_FINISHED_TASK) {
 		t.Errorf("Expected \"%v\", got \"%v\"", TEST_FINISHED_TASK, *(returnedSession.Task))
 	}
-	
+
 	// http://localhost:9999/api/v1.0/task/output/{guid}
 	url = fmt.Sprintf("%stask/output/%s", BASE_URL, TEST_FINISHED_TASK.GUID)
 	getResp, err := http.Get(url)
@@ -1059,7 +1059,7 @@ func TestSetGetAndRemoveTaskOutput(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	preformatted = `{
   "type": 5,
   "status": 0,

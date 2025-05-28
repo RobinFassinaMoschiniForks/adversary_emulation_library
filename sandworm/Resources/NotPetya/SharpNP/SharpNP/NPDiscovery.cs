@@ -1,12 +1,12 @@
 ﻿/*=============================================================================================
 *
 *    Description:  This program emulates NotPetya.
-*   
+*
 *        Version:  1.0
 *        Created:  September 1st, 2021
 *
 *      Author(s):  Jesse Burgoon
-*   Organization:  MITRE Engenuity
+*   Organization:  The MITRE Corporation
 *
 *  References(s): https://attack.mitre.org/software/S0368/
 *
@@ -30,7 +30,7 @@ namespace SharpNP
 
             try
             {
-                // Get list of IPs using GetIpNetTable API 
+                // Get list of IPs using GetIpNetTable API
                 arp_table = SharpNP.ArpDiscovery.GetArpTable();
             }
             catch
@@ -42,7 +42,7 @@ namespace SharpNP
 
             try
             {
-                // Get list of IPs using GetExtendedTcpTable API 
+                // Get list of IPs using GetExtendedTcpTable API
                 tcp_conns = SharpNP.TcpConnDiscovery.GetAllTCPv4Ips();
             }
             catch

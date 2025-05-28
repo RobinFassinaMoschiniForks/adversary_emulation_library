@@ -1,4 +1,4 @@
-module attackevals.mitre-engenuity.org/control_server
+module attackevals.mitre.org/control_server
 
 go 1.15
 

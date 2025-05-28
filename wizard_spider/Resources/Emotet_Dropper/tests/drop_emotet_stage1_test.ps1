@@ -3,12 +3,12 @@
 #       Filename:  drop_emotet_stage1_test.ps1
 #
 #    Description:  This program tests functionality of drop_emotet_stage1.vbs.
-#   
+#
 #        Version:  1.1
 #        Created:  March 1st, 2021
 #
 #      Author(s):  Michael C. Long II
-#   Organization:  MITRE Engenuity
+#   Organization:  The MITRE Corporation
 #
 #  References(s): N/A
 #
@@ -73,7 +73,7 @@ function Invoke-UnitTest1 {
     if (-Not $got.Contains($want)) {
         Write-Failure -output_received $got -output_expected $want
     }
-    Write-Success        
+    Write-Success
 }
 
 function Invoke-UnitTest2 {
@@ -95,7 +95,7 @@ function Invoke-UnitTest3 {
         Write-Failure -output_received $got -output_expected $want
     }
     Write-Success
-    
+
 }
 
 function Invoke-UnitTest4 {
@@ -106,20 +106,20 @@ function Invoke-UnitTest4 {
 
     # we write test_program.exe to this location
     $directory = $env:APPDATA + "\" + "Testing"
-    
+
 
 try {
     # generate obfuscated payload
     python ..\obfuscators\obfuscate_stage2_dropper.py -c test_config.yaml -i ..\drop_emotet_stage2.ps1 -o encoded_emotet_stage2_dropper.ps1
     python ..\obfuscators\obfuscate_stage1_dropper.py -c test_config.yaml -i encoded_emotet_stage2_dropper.ps1 -j ..\drop_emotet_stage1.vbs -o tmp.vbs
     cscript.exe ..\obfuscators\obfuscate_vbs.vbs tmp.vbs
-    
+
     # execute dropper script to verify the entire system works
     cscript.exe obfuscated_emotet_dropper.vbs
 }
 catch {
     Write-Failure -output_expected "NIL" -output_received $_.Exception.Message
-}   
+}
     Write-Success
 
     # Tear down test and delete artifacts

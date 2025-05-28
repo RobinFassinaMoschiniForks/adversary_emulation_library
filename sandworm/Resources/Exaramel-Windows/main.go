@@ -8,8 +8,8 @@ import (
 	"os"
 	"time"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/c2"
-	"attackevals.mitre-engenuity.org/exaramel-windows/taskhandler"
+	"attackevals.mitre.org/exaramel-windows/c2"
+	"attackevals.mitre.org/exaramel-windows/taskhandler"
 )
 
 //export Start

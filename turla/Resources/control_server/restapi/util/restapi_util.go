@@ -5,10 +5,10 @@ import (
     "fmt"
     "encoding/json"
 
-    "attackevals.mitre-engenuity.org/control_server/config"	
-    "attackevals.mitre-engenuity.org/control_server/logger"
-    "attackevals.mitre-engenuity.org/control_server/sessions"
-    "attackevals.mitre-engenuity.org/control_server/tasks"
+    "attackevals.mitre.org/control_server/config"
+    "attackevals.mitre.org/control_server/logger"
+    "attackevals.mitre.org/control_server/sessions"
+    "attackevals.mitre.org/control_server/tasks"
 )
 
 // API response types and status codes

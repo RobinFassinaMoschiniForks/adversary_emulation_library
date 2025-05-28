@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/discovery"
-	"attackevals.mitre-engenuity.org/exaramel-windows/encrypt"
-	"attackevals.mitre-engenuity.org/exaramel-windows/execute"
-	"attackevals.mitre-engenuity.org/exaramel-windows/files"
+	"attackevals.mitre.org/exaramel-windows/discovery"
+	"attackevals.mitre.org/exaramel-windows/encrypt"
+	"attackevals.mitre.org/exaramel-windows/execute"
+	"attackevals.mitre.org/exaramel-windows/files"
 )
 
 func HandleTask(task string) ([]byte, error) {

@@ -4,7 +4,7 @@
 
 This repository contains the evals plugin for [CALDERA](https://github.com/mitre/caldera/wiki).
 This [plugin](https://caldera.readthedocs.io/en/latest/Learning-the-terminology.html#what-is-a-plugin) contains the TTPs used within the ATT&CK Evaluations round 2 (APT29) and round 1 (APT3).
-For more information, please see the [evaulations website](https://attackevals.mitre-engenuity.org/about).
+For more information, please see the [evaulations website](https://attackevals.mitre.org/about).
 
 **Please read this README.md in its entirety to avoid missing crucial steps when executing an adversary.**
 
@@ -31,8 +31,8 @@ Under the operation panel you will see these phases listed as **APT29 - Day 1.A*
 Leverage the appropriate CALDERA [SANDCAT](https://caldera.readthedocs.io/en/latest/Plugin-library.html?highlight=sandcat#sandcat-54ndc47) [groups](https://caldera.readthedocs.io/en/latest/Learning-the-terminology.html#what-is-a-group) for each operational phase.
 Prior to running an [operation](https://caldera.readthedocs.io/en/latest/Learning-the-terminology.html#what-is-an-operation), please consult the environment setup steps below.
 
-### Environment Setup - Evals Round 2 - APT29 
-Consult the [ATT&CK EVALUATION's Environment](https://attackevals.mitre-engenuity.org/APT3/environment) web page for a reference guide on how to replicate the range environment.
+### Environment Setup - Evals Round 2 - APT29
+Consult the [ATT&CK EVALUATION's Environment](https://attackevals.mitre.org/APT3/environment) web page for a reference guide on how to replicate the range environment.
 Ensure that all A/V is disabled within the environment to successfully replicate the EVALS environment.
 
 - On your day 2 initial host you will need to manually browse to ```C:\Windows\Temp``` via ```Windows Explorer``` and accept the prompt.
@@ -131,7 +131,7 @@ At this point, you should then see an agent call back to your CALDERA server, wh
 ---
 
 #### APT29 Day 1.B - Lateral Movement
-Additional agents will spawn from the **APT29 Day-1 A** operation including a SANDCAT agent renamed as "python.exe". 
+Additional agents will spawn from the **APT29 Day-1 A** operation including a SANDCAT agent renamed as "python.exe".
 This will be the starting for **APT29 Day-1 B**. To start **APT29 Day-1 B**, start another operation with the group the "python.exe" agent is in.
 Agent metadata can be viewed by clicking on the process id within the CALDERA interface.
 
@@ -144,7 +144,7 @@ Now that we have verified the new agent exists, run a new operation using the **
 ---
 
 #### APT29 Day 2
-The  APT29 Day-2 adversary profile expects a new agent to be run on a new machine as a non-elevated user. 
+The  APT29 Day-2 adversary profile expects a new agent to be run on a new machine as a non-elevated user.
 Copy the SANDCAT cradle as previously done and execute in a non-administrator PowerShell prompt.
 
 ![img-12](./imgs/12-caldera.png)

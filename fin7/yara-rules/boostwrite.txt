@@ -1,10 +1,10 @@
 rule boostwrite
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect BOOSTWRITE file name"
-	
+
     strings:
         $boostwrite1 = "BOOSTWRITE" nocase
 
@@ -15,10 +15,10 @@ rule boostwrite
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with BOOSTWRITE.dll"
-	
+
     strings:
         $functions1 = "WinBioGetEnrolledFactors"
 		$functions2 = "WSAIoctl"
@@ -100,10 +100,10 @@ rule functions
 rule av
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings associated with AV"
-	
+
     strings:
         $av1 = "AVtype_info@@"
 		$av2 = "AVexception@std@@"
@@ -117,10 +117,10 @@ rule av
 rule dll
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect DLLs associated with BOOSTWRITE.dll"
-	
+
     strings:
         $dll1 = "iphlpapi.dll"
 		$dll2 = "WS2_32.DLL"
@@ -140,7 +140,7 @@ rule dll
 		$dll16 = "api-ms-win-crt-string-l1-1-0.dll"
 		$dll17 = "api-ms-win-crt-filesystem-l1-1-0.dll"
 		$dll18 = "api-ms-win-crt-convert-l1-1-0.dll"
-		$dll19 = "api-ms-win-crt-environment-l1-1-0.dll"		
+		$dll19 = "api-ms-win-crt-environment-l1-1-0.dll"
 
     condition:
         all of them

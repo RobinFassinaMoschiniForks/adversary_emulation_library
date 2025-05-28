@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/simplehttp"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
-	"attackevals.mitre-engenuity.org/control_server/tasks"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/simplehttp"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/tasks"
 )
 
 var restAPIlistenHost = "127.0.0.1:9998"
@@ -59,13 +59,13 @@ func createTestTaskForSession(t *testing.T) {
 	createTaskUrl := fmt.Sprintf("http://%s/api/v1.0/session/%s/task", restAPIlistenHost, exampleBeacon.GUID)
 	// setup HTTP POST request
 	req, err := http.NewRequest("POST", createTaskUrl, bytes.NewBufferString(exampleTask.Command))
-	
+
 	req.Header.Set("X-Task-Guid", exampleTask.GUID)
 	req.Close = true
 	if err != nil {
 		t.Error(err)
 	}
-	
+
 	// execute HTTP POST and read response
 	client := &http.Client{}
 	response, err := client.Do(req)
@@ -199,7 +199,7 @@ func TestPostTaskOutput(t *testing.T) {
 	defer stopSimpleHTTPHandler(t)
 
 	createTestTaskForSession(t)
-	
+
 	url := postOutputURL + "/" + exampleBeacon.GUID
 	output := "this is example task output"
 

@@ -1,11 +1,11 @@
 ﻿/*=============================================================================================
 *
 *    Description:  This program emulates RDAT's exfiltration capabilities
-*   
+*
 *        Version:  1.0
 *        Created:  March 15, 2022
 *
-*   Organization:  MITRE Engenuity
+*   Organization:  The MITRE Corporation
 *
 *   References(s):
 *   https://attack.mitre.org/software/S0495/
@@ -100,7 +100,7 @@ namespace exchange_web_service_client {
 
         /// <summary>
         ///     Chunks data from this.filepath, send data as attachment in SendEmail()
-        ///     
+        ///
         ///     MITRE ATT&CK Techniques: T1030 - Data Transfer Size Limits
         /// </summary>
         /// <returns></returns>
@@ -247,7 +247,7 @@ namespace exchange_web_service_client {
                     else {
                         this.serverpath = argElem[1];
                     }
-                    this.serverpath += "/EWS/Exchange.asmx";                    
+                    this.serverpath += "/EWS/Exchange.asmx";
                 }
                 // optional: chunksize
                 else if (argElem[0].Equals("--chunksize")) {
@@ -263,7 +263,7 @@ namespace exchange_web_service_client {
             }
             verifyClassData();
         }
-            
+
         // Main Method
         static void Main(string[] args) {
             // EWSClient class

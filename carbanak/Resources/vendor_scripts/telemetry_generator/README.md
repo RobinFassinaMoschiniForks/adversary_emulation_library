@@ -9,7 +9,7 @@ Data Generator functions are responsible for carrying out an atomic action withi
 * Any Windows OS
 * Git for Windows
 * Unrestricted PowerShell Execution Policy or CLI equivalent
-* Internet Access 
+* Internet Access
 
 ## Installation
 
@@ -24,7 +24,7 @@ git clone !<INSERT LINK TO REPO HERE>!
 If the PowerShell Execution Policy is restricted, run `telemetry-generator.ps1` with `-ExecutionPolicy Bypass`
 ```Bash
 PowerShell.exe -ExecutionPolicy Bypass -File .\telemetry-generator.ps1
-``` 
+```
 
 The `-ExecuteAll` switch will run all data generators:
 ```Bash
@@ -90,4 +90,4 @@ TBD
 
 ## Licensing
 
-© 2020 MITRE Engenuity. Approved for Public Release.
+© 2020 The MITRE Corporation. Approved for Public Release.

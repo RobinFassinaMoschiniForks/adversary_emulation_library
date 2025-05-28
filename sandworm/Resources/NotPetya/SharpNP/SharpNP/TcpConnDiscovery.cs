@@ -1,12 +1,12 @@
 ﻿/*=============================================================================================
 *
 *    Description:  This program emulates NotPetya.
-*   
+*
 *        Version:  1.0
 *        Created:  September 1st, 2021
 *
 *      Author(s):  Jesse Burgoon
-*   Organization:  MITRE Engenuity
+*   Organization:  The MITRE Corporation
 *
 *  References(s): https://attack.mitre.org/software/S0368/
 *

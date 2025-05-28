@@ -21,7 +21,7 @@ import sys
         Created:  April 5th, 2021
 
       Author(s):  Michael C. Long II
-   Organization:  MITRE Engenuity
+   Organization:  The MITRE Corporation
 
   References(s): N/A
 """

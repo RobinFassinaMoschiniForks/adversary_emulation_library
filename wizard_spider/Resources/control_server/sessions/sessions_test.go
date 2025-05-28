@@ -3,7 +3,7 @@ package sessions_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 var mySesssion = sessions.Session{

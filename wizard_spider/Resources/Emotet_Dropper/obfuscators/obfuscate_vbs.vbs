@@ -5,12 +5,12 @@
 '    Description:  This script, based on DoctorLai's script_contentscript_Obfuscator project,
 '                  obfuscates a script_contents file replacing all characters with non human readable
 '                  symbols.
-'   
+'
 '        Version:  1.0
 '        Created:  March 1st, 2021
 '
 '      Author(s):  Michael C. Long II
-'   Organization:  MITRE Engenuity
+'   Organization:  The MITRE Corporation
 '
 '  References(s): https://github.com/DoctorLai/script_contentscript_Obfuscator
 '
@@ -29,7 +29,7 @@ Function script_contents_obfuscator(n)
 			script_contents_obfuscator = (n - r) & "+CLng(&H" & Hex(r) & ")"
 		Case Else
 			script_contents_obfuscator = (n * r) & "/CLng(&H" & Hex(r) & ")"
-	End Select			
+	End Select
 End Function
 
 Function Obfuscator(script_contents)
@@ -66,15 +66,15 @@ function Main()
 	Set dest_file = file_system.CreateTextFile("obfuscated_emotet_dropper.vbs",true)
 
 	Dim script_contents
-	script_contents = source_file.ReadAll	
+	script_contents = source_file.ReadAll
 
 	dest_file.write(Obfuscator(script_contents))
-	
+
 	source_file.Close
 	dest_file.close()
 
 	WScript.Echo "[+] File written in current working directory: 'obfuscated_emotet_dropper.vbs'"
-	
+
 	Set file_system = Nothing
 End Function
 

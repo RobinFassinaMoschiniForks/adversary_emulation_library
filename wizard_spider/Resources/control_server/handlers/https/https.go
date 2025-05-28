@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/sslcerts"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/sslcerts"
 	"github.com/gorilla/mux"
 )
 

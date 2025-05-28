@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/logger"
 	"github.com/gorilla/mux"
 )
 

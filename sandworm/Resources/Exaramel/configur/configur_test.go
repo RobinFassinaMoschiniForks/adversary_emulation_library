@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/exaramel/configur"
+	"attackevals.mitre.org/exaramel/configur"
 	"github.com/google/go-cmp/cmp"
 )
 

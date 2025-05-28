@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/handlers"
+	"attackevals.mitre.org/control_server/handlers"
 )
 
 func TestStartHandlers(t *testing.T) {

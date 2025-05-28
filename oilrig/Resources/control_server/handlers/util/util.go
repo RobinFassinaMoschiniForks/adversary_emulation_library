@@ -1,7 +1,7 @@
 package util
 
 import (
-	"attackevals.mitre-engenuity.org/control_server/config"
+	"attackevals.mitre.org/control_server/config"
 )
 
 // The Handler interface provides methods that all C2 handlers must implement.

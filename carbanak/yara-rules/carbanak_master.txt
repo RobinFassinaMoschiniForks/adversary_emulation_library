@@ -1,10 +1,10 @@
 rule attackatz
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with attackkatz.exe"
-	
+
     strings:
         $katz1 = "NTPASSWORDHISTORY"
 		$katz2 = "LMPASSWORDHISTORY"
@@ -41,7 +41,7 @@ rule attackatz
 		$katz33 = "SamOpen"
 		$katz34 = "VirtualAlloc"
 		$katz35 = "SamCloseHandle"
-		
+
     condition:
         all of them
 }
@@ -50,10 +50,10 @@ rule attackatz
 rule http_rat
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with http-rat.js"
-	
+
     strings:
         $execShellCommand1 = "echo '[+] Upload Complete' >"
 		$execShellCommand3 = "enum-system"
@@ -81,10 +81,10 @@ rule http_rat
 rule javaupdate
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with java-update.exe"
-	
+
     strings:
         $javaupdate1 = "pashulke67@gmail.com"
 		$javaupdate2 = "Bargaining active"
@@ -120,10 +120,10 @@ rule javaupdate
 rule keylogger
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with keylogger.exe"
-	
+
     strings:
         $keylogger1 = "Error, too many arguments."
 		$keylogger2 = "Starting KeyCapture to file"
@@ -139,10 +139,10 @@ rule keylogger
 rule tiny
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with tiny.exe"
-	
+
     strings:
         $tiny1 = "tiny.exe" nocase
 		$tiny2 = "lhost" nocase
@@ -184,10 +184,10 @@ rule tiny
 rule dumpWebCreds
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/15/2021"
 		description = "Used to detect strings associated with dumpWebCreds.exe"
-	
+
     strings:
         $dumpwebcreds1 = "<GetCreds>g__GetVaultElementValue|0_0"
         $dumpwebcreds3 = "VAULT_SCHEMA_ELEMENT_ID"

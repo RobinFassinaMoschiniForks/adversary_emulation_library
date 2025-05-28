@@ -13,9 +13,9 @@ import (
 	"encoding/hex"
 	"net/http/httptest"
 
-	"attackevals.mitre-engenuity.org/control_server/handlers/trickbot"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/handlers/trickbot"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/restapi"
 )
 
 var listenAddr = "127.0.0.1:447"
@@ -169,17 +169,17 @@ func TestPostTaskOutput(t *testing.T) {
 func TestDownload(t *testing.T) {
 	var command = "5"
 	var filename = "hello_world.elf"
-	
+
 	cwd, _ := os.Getwd()
 	os.Chdir("../../")
 	defer os.Chdir(cwd)
-	
+
 	startRESTAPI()
 	defer stopRESTAPI()
-	
+
 	startTrickBotHandler()
 	defer stopTrickBotHandler()
-	
+
 	downloadFileURL := fmt.Sprintf("%s%s/%s/%s/%s/%s", baseURL, campaign_id, client_id, command, filename, random_string)
 	req, err := http.NewRequest("GET", downloadFileURL, nil)
 	if err != nil {
@@ -221,7 +221,7 @@ func TestPostFileToServer(t *testing.T) {
 	// start REST API
 	startRESTAPI()
 	defer stopRESTAPI()
-	
+
 	startTrickBotHandler()
 	defer stopTrickBotHandler()
 	// read file to upload

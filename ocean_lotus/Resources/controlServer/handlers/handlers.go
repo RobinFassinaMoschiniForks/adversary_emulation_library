@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
 
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/oceanlotus"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/simplehttp"
+	_ "attackevals.mitre.org/control_server/handlers/oceanlotus"
+	_ "attackevals.mitre.org/control_server/handlers/simplehttp"
 )
 
 // StartHandlers starts the C2 handlers

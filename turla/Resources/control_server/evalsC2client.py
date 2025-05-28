@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------
 # evalsC2client.py - Interact with Evals C2 server.
 
-# Copyright 2023 MITRE Engenuity. Approved for public release. Document number CT0005.
+# Copyright 2023 The MITRE Corporation. Approved for public release. Document number CT0005.
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
 # http://www.apache.org/licenses/LICENSE-2.0
@@ -11,14 +11,14 @@
 # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 # This project makes use of ATT&CK®
-# ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
+# ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
 
-# Usage: 
+# Usage:
 # ./evalsC2client.py --set-task [GUID] "task string"
 
 # Revision History:
 
-# --------------------------------------------------------------------------- 
+# ---------------------------------------------------------------------------
 
 import argparse
 import json
@@ -58,10 +58,10 @@ VERBOSE_OUTPUT = False
 # Custom exception for handling API responses
 class ApiResponseException(Exception):
     pass
-    
+
 def print_stderr(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
-    
+
 def verbose_print(*args, **kwargs):
     if VERBOSE_OUTPUT:
         print(*args, **kwargs)
@@ -70,7 +70,7 @@ def verbose_print(*args, **kwargs):
 
 def validate_api_resp_format(resp_dict):
     """Throws ApiResponseException when detecting an invalid API response format (missing JSON field, etc)"""
-    
+
     if API_RESP_TYPE_KEY not in resp_dict:
         raise ApiResponseException('Malformed API response: missing API response type key "' + API_RESP_TYPE_KEY + '"')
     elif not isinstance(resp_dict[API_RESP_TYPE_KEY], int):
@@ -81,7 +81,7 @@ def validate_api_resp_format(resp_dict):
         raise ApiResponseException('Malformed API response: response status is not an int.')
     if API_RESP_DATA_KEY not in resp_dict:
         raise ApiResponseException('Malformed API response: missing API response data key "' + API_RESP_DATA_KEY + '"')
-        
+
     # verify response type and data type
     resp_type = resp_dict[API_RESP_TYPE_KEY]
     resp_data = resp_dict[API_RESP_DATA_KEY]
@@ -100,26 +100,26 @@ def validate_api_resp_format(resp_dict):
     elif resp_type == RESP_TYPE_SESSIONS:
         if resp_data is not None and not isinstance(resp_data, list):
             raise ApiResponseException('Malformed API response: expected None or list data type for response type {}'.format(resp_type))
-        
+
 
 def verify_api_resp_success(resp_dict):
     """Throws ApiResponseException if API response indicates failure."""
-    
+
     if resp_dict[API_RESP_STATUS_KEY] != API_RESP_STATUS_SUCCESS:
         raise ApiResponseException('Received unsuccessful API response: ' + resp_dict[API_RESP_DATA_KEY])
-        
-        
+
+
 def extract_response(api_resp_str, expected_type):
     resp_dict = json.loads(api_resp_str)
     validate_api_resp_format(resp_dict)
     verify_api_resp_success(resp_dict)
-    
+
     resp_type = resp_dict[API_RESP_TYPE_KEY]
     if resp_type != expected_type:
         raise ApiResponseException('Expected response type {0}, got {1}'.format(expected_type, resp_type))
     return resp_dict[API_RESP_DATA_KEY]
 
-    
+
 def extract_and_print_response(response, resp_type):
     try:
         resp_data = extract_response(response.text, resp_type)
@@ -140,7 +140,7 @@ def extract_and_print_response(response, resp_type):
         print_stderr("Unhandled exception: {0}\nAPI response text:\n{1}\n".format(str(e), response.text))
         traceback.print_exc()
 
-    
+
 def extract_and_print_single_session_response(response):
     try:
         sessions = extract_response(response.text, RESP_TYPE_SESSIONS)
@@ -151,7 +151,7 @@ def extract_and_print_single_session_response(response):
         print_stderr("Unhandled exception: {0}\nAPI response text:\n{1}\n".format(str(e), response.text))
         traceback.print_exc()
 
-"""API Wrappers"""  
+"""API Wrappers"""
 
 def get_server_version(port: str):
     url = "http://localhost:{0}/api/v1.0/version".format(port)
@@ -187,7 +187,7 @@ def get_task_by_session_id(guid: str, port: str):
     url = "http://localhost:{0}/api/v1.0/session/{1}/task".format(port, guid)
     r = requests.get(url)
     print(r.text)
-    
+
 
 def set_task_by_session_id(guid, task: str, port: str):
     url = "http://localhost:{0}/api/v1.0/session/{1}/task".format(port, guid)
@@ -209,12 +209,12 @@ def delete_task_output_by_session_id(guid: str, port: str):
     url = "http://localhost:{0}/api/v1.0/session/{1}/task/output".format(port, guid)
     r = requests.delete(url)
     extract_and_print_response(r, RESP_TYPE_CTRL)
-    
+
 def get_bootstrap_task(handler: str, port: str):
     url = "http://localhost:{0}/api/v1.0/bootstraptask/".format(port) + handler
     r = requests.get(url)
     print(r.text)
-    
+
 
 def set_bootstrap_task(handler, task: str, port: str):
     url = "http://localhost:{0}/api/v1.0/bootstraptask/".format(port) + handler
@@ -234,7 +234,7 @@ def get_task_status(task_guid: str, port):
     r = requests.get(url)
     task_data = extract_response(r.text, RESP_TYPE_TASK_INFO)
     return task_data[TASK_STATUS_KEY]
-    
+
 
 def get_task_output(task_guid: str, port):
     url = 'http://localhost:{0}/api/v1.0/task/{1}'.format(port, task_guid)
@@ -255,7 +255,7 @@ def set_and_complete_task(session_guid, task: str, port: str, timeout: int):
         task_command = task_data[TASK_COMMAND_KEY]
         verbose_print('Set task with ID {0} for session {1} with command {2}'.format(task_guid, session_guid, task_command))
         verbose_print('Waiting up to {0} seconds for task output'.format(timeout))
-    
+
         now = datetime.now()
         timeout_deadline = now + timedelta(seconds=timeout)
         finished = False
@@ -300,13 +300,13 @@ def main():
     parser.add_argument("--get-bootstrap-task", metavar=('HANDLER'), help="get current bootstrap task for new sessions for the specified handler")
     parser.add_argument("--set-bootstrap-task", nargs=2, metavar=('HANDLER', 'COMMAND'), help="set a bootstrap task for new sessions for the specified handler")
     parser.add_argument("--del-bootstrap-task", metavar=('HANDLER'), help="delete a bootstrap task for new sessions for the specified handler")
-    parser.add_argument("--set-and-complete-task", nargs=2, metavar=('SESSIONID', 'COMMAND'), 
+    parser.add_argument("--set-and-complete-task", nargs=2, metavar=('SESSIONID', 'COMMAND'),
                         help="set a task for a session as specified by SESSIONID, wait for the command to finish, and then return the output.")
-    parser.add_argument("--task-wait-timeout", default=120, metavar=('TIMEOUT'), 
+    parser.add_argument("--task-wait-timeout", default=120, metavar=('TIMEOUT'),
                         help="number of seconds to wait for the command to finish (default 120 seconds). Only used with --set-and-complete-task.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Toggle verbose standard output")
     args = parser.parse_args()
-    
+
     if args.verbose:
         global VERBOSE_OUTPUT
         VERBOSE_OUTPUT = True
@@ -347,7 +347,7 @@ def main():
     elif args.del_output:
         guid = args.del_output
         delete_task_output_by_session_id(guid, args.set_port)
-    
+
     elif args.get_bootstrap_task:
         handler = args.get_bootstrap_task
         get_bootstrap_task(handler, args.set_port)
@@ -359,7 +359,7 @@ def main():
     elif args.del_bootstrap_task:
         handler = args.del_bootstrap_task
         delete_bootstrap_task(handler, args.set_port)
-        
+
     elif args.set_and_complete_task:
         session_guid, command = args.set_and_complete_task
         timeout = 120

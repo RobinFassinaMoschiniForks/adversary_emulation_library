@@ -15,9 +15,9 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/restapi"
 	"github.com/dsnet/compress/bzip2"
 )
 
@@ -179,7 +179,7 @@ func sendImplantRequestAndCheck(test *testing.T, serverURL string, request strin
     var decompressedResponse []byte
     if endResponse != -1 {
         response := string(body)[startResponse:endResponse]
-    
+
         decodedResponse, err := Base64Decode(string(response))
         if err != nil {
             test.Error(err.Error())
@@ -560,7 +560,7 @@ func convertTaskToResponseAndCheck(test *testing.T, epicHandler *EpicHandler, id
     var decompressedResponse []byte
     if endResponse != -1 {
         encodedResponse := string(response)[startResponse:endResponse]
-    
+
         decodedResponse, err := Base64Decode(string(encodedResponse))
         if err != nil {
             test.Error(err.Error())

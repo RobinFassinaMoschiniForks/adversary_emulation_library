@@ -1,10 +1,10 @@
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with sql-rat.js"
-	
+
     strings:
 		$function1 = "sleep"
         $function2 = "listRunningProcesses"
@@ -23,7 +23,7 @@ rule functions
 		$function16 = "execShellCommand"
 		$function17 = "deleteCmd"
 		$function18 = "getTasking"
-		
+
     condition:
         all of them
 }
@@ -31,10 +31,10 @@ rule functions
 rule sleep
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the sleep function"
-	
+
     strings:
         $sleep1 = "jitter = Math.round(Math.random()*(max-min)+min)"
 		$sleep2 = "sleepInterval = 500*3*jitter"
@@ -46,10 +46,10 @@ rule sleep
 rule isVm
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the isVm function"
-	
+
     strings:
         $isVm1 = "Select * From Win32_BIOS"
 		$isVm2 = "bios_version.indexOf('vmware')"
@@ -65,10 +65,10 @@ rule isVm
 rule getSysInfo
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the getSysInfo function"
-	
+
     strings:
         $getSysInfo1 = "('username***' + getEnvVar('%USERNAME%'))"
 		$getSysInfo2 = "('hostname***' + getEnvVar('%COMPUTERNAME%'))"
@@ -89,10 +89,10 @@ rule getSysInfo
 rule getMacSerial
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the getMacSerial function"
-	
+
     strings:
         $getMacSerial1 = "Select * From Win32_NetworkAdapterConfiguration Where IPEnabled = True"
 		$getMacSerial2 = "Select * from Win32_LogicalDisk"
@@ -105,10 +105,10 @@ rule getMacSerial
 rule sendTaskOutput
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the sendTaskOutput function"
-	
+
     strings:
         $sendTaskOutput1 = "ActiveXObject"
 		$sendTaskOutput2 = "ADODB.Command"
@@ -121,14 +121,14 @@ rule sendTaskOutput
 rule downloadfile
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the downloadFile function"
-	
+
     strings:
         $downloadfile1 = "WScript.CreateObject('ADODB.Stream')"
 		$downloadfile2 = "WScript.CreateObject('Scripting.FileSystemObject')"
-		
+
     condition:
         all of them
 }
@@ -136,10 +136,10 @@ rule downloadfile
 rule uploadFile
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the uploadFile function"
-	
+
     strings:
         $uploadFile1 = "ADODB.Stream"
 		$uploadFile2 = "Scripting.FileSystemObject"
@@ -151,10 +151,10 @@ rule uploadFile
 rule execShellCommand
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the execShellCommand function"
-	
+
     strings:
         $execShellCommand1 = "echo '[+] Upload Complete' >"
 		$execShellCommand2 = "2>&1"
@@ -168,10 +168,10 @@ rule execShellCommand
 rule deleteCmd
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the deleteCmd function"
-	
+
     strings:
         $deleteCmd1 = "DELETE FROM Requests WHERE ID = "
 
@@ -182,10 +182,10 @@ rule deleteCmd
 rule getTasking
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect strings from the getTasking function"
-	
+
     strings:
         $getTasking1 = "SELECT ID, cmd, filecontent FROM Requests;"
 

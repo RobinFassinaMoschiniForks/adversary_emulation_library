@@ -1,6 +1,6 @@
 # APT29 Adversary Emulation
 
-This adversary emulation plan is derived from the original [APT29](https://attack.mitre.org/groups/G0016/) content developed and used in the [2019 ATT&CK Evaluations](https://attackevals.mitre-engenuity.org/APT29/). It's format has been updated in collaboration with the [Center for Threat-Informed Defense](https://mitre-engenuity.org/center-for-threat-informed-defense/) to consolidate MITRE Engenuity emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats.
+This adversary emulation plan is derived from the original [APT29](https://attack.mitre.org/groups/G0016/) content developed and used in the [2019 ATT&CK Evaluations](https://attackevals.mitre.org/APT29/). It's format has been updated in collaboration with the [MITRE Center for Threat-Informed Defense](https://ctid.mitre.org/) to consolidate MITRE emulation resources under a single [Adversary Emulation Library](https://github.com/center-for-threat-informed-defense/adversary_emulation_library), and further standardize plan formats.
 
 APT29 is thought to be an organized and well-resourced cyber threat actor whose collection objectives appear to align with the interests of the Russian Federation.<sup>[1](https://www.f-secure.com/documents/996508/1030745/dukes_whitepaper.pdf),[14](https://www.us-cert.gov/sites/default/files/publications/JAR_16-20296A_GRIZZLY%20STEPPE-2016-1229.pdf)</sup>  The group is reported to have been operating as early as 2008 and may have logged operational successes as recently as 2020.
 
@@ -45,7 +45,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-Copyright 2021 MITRE Engenuity. Approved for public release. Document number AT0008.
+Copyright 2021 The MITRE Corporation. Approved for public release. Document number AT0008.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

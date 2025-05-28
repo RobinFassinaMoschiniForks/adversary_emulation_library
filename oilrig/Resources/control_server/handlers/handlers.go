@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"strings"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
 
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/emotet"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/exaramel"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/https"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/simplehttp"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/trickbot"
-	_ "attackevals.mitre-engenuity.org/control_server/handlers/sidetwist"
+	_ "attackevals.mitre.org/control_server/handlers/emotet"
+	_ "attackevals.mitre.org/control_server/handlers/exaramel"
+	_ "attackevals.mitre.org/control_server/handlers/https"
+	_ "attackevals.mitre.org/control_server/handlers/simplehttp"
+	_ "attackevals.mitre.org/control_server/handlers/trickbot"
+	_ "attackevals.mitre.org/control_server/handlers/sidetwist"
 )
 
 // StartHandlers starts the C2 handlers

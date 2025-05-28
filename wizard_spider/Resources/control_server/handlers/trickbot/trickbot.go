@@ -14,8 +14,8 @@ import (
 
 	// "path/filepath"
 
-	"attackevals.mitre-engenuity.org/control_server/handlers/trickbot/helper"
-	"attackevals.mitre-engenuity.org/control_server/logger"
+	"attackevals.mitre.org/control_server/handlers/trickbot/helper"
+	"attackevals.mitre.org/control_server/logger"
 	"github.com/gorilla/mux"
 )
 

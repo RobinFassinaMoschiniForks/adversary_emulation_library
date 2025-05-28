@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/display"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/display"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/sessions"
 	"github.com/gorilla/mux"
 )
 

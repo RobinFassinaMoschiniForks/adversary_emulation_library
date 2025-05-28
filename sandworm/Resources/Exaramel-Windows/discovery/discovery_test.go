@@ -3,7 +3,7 @@ package discovery_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/exaramel-windows/discovery"
+	"attackevals.mitre.org/exaramel-windows/discovery"
 )
 
 func TestGetCurrentserName(t *testing.T) {

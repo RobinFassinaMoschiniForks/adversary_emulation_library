@@ -3,7 +3,7 @@ package sessions_test
 import (
 	"testing"
 
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 var mySesssion = sessions.Session{
@@ -138,7 +138,7 @@ func TestBootstrapTask(t *testing.T) {
 	if len(currBootstrap) > 0 {
 		t.Errorf("Expected empty bootstrap task for %s, got: %s", handler, currBootstrap)
 	}
-	
+
 	sessions.SetBootstrapTask(handler, expectedTask)
 	currBootstrap = sessions.GetBootstrapTask(handler)
 	if currBootstrap != expectedTask {
@@ -148,7 +148,7 @@ func TestBootstrapTask(t *testing.T) {
 	if len(currBootstrap) > 0 {
 		t.Errorf("Expected empty bootstrap task for handler2, got: %s", currBootstrap)
 	}
-	
+
 	sessions.RemoveBootstrapTask(handler)
 	currBootstrap = sessions.GetBootstrapTask(handler)
 	if len(currBootstrap) > 0 {

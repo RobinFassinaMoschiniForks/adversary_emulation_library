@@ -19,9 +19,9 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/exaramel"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/exaramel"
+	"attackevals.mitre.org/control_server/restapi"
 	"github.com/google/go-cmp/cmp"
 )
 

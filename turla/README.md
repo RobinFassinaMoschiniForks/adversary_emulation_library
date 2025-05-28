@@ -10,7 +10,7 @@ Active since at least the early 2000s, [Turla](https://attack.mitre.org/groups/G
 **Associated Groups:** IRON HUNTER, Group 88, Belugasturgeon, Waterbug, WhiteBear, Snake, Krypton, Venomous Bear
 
 ## Emulation Overview 📖
-This scenario follows Turla’s multi-phase intelligence collection campaign by establishing a typo-squatted website of NATO to target entities with a high value of information. During **phase one**, Turla implants a watering hole for persistence on the victim’s network as a way to compromise more targets of interest. Turla gains initial access through a spearphishing email, a fake software installer is downloaded onto the victim machine, and execution of the EPIC payload takes place. Once persistence and C2 communications are established, a domain controller is discovered, and CARBON-DLL is ingressed into victim network. Further lateral movement brings the attackers to a Linux Apache server where PENGUIN is copied to the server and used to install a watering hole. 
+This scenario follows Turla’s multi-phase intelligence collection campaign by establishing a typo-squatted website of NATO to target entities with a high value of information. During **phase one**, Turla implants a watering hole for persistence on the victim’s network as a way to compromise more targets of interest. Turla gains initial access through a spearphishing email, a fake software installer is downloaded onto the victim machine, and execution of the EPIC payload takes place. Once persistence and C2 communications are established, a domain controller is discovered, and CARBON-DLL is ingressed into victim network. Further lateral movement brings the attackers to a Linux Apache server where PENGUIN is copied to the server and used to install a watering hole.
 
 In **phase two** of the attack, the attackers establish a typo-squatted website to target entities with high value information. The victims are prompted to update their (Not)Flash, and in doing so, EPIC is installed on their network. EPIC communicates to the C2 server via proxy web server with HTTPS requests, and SNAKE is then deployed to maintain foothold, elevate privileges and communicates to the C2 via HTTP/SMTP/DNS. Next, the attackers move laterally onto a Microsoft IIS server, install SNAKE, and create an admin account. The attackers then move laterally onto an Exchange workstation, and install SNAKE. Fianlly, they move laterally onto an Exchange Server and install LightNeuron. LIGHTNERON enables email collection and staging for exfiltrating stolen data via benign email PDF/JPG attachments. Turla proceeeds to collect and exfiltrate sensitive communications in an effort to identify new information sources and collect up-to-date information relevant to mission objectives.
 
@@ -66,9 +66,9 @@ This scenario also utilizes `Mimikatz`, `Plink`, `Pscp`, and `PsExec` as payload
 - [Snake Protection Scenario](./Emulation_Plan/Snake_Scenario/Snake_Protections_Scenario.md) - Step by step walkthrough of Snake Protection Scenario's procedures (6 tests)
 
 ## For Analysts 🔎
-- [Carbon Operation Flow](./Operations_Flow/Carbon_Operations_Flow.md/) - High-level summary of the Carbon scenario & infrastructure with diagrams. 
-- [Snake Operation Flow](./Operations_Flow/Snake_Operations_Flow.md/) - High-level summary of the Snake scenario & infrastructure with diagrams. 
-- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario. 
+- [Carbon Operation Flow](./Operations_Flow/Carbon_Operations_Flow.md/) - High-level summary of the Carbon scenario & infrastructure with diagrams.
+- [Snake Operation Flow](./Operations_Flow/Snake_Operations_Flow.md/) - High-level summary of the Snake scenario & infrastructure with diagrams.
+- [Intelligence Summary](./Intelligence_Summary/Intelligence_Summary.md) - General overview of the Adversary with links to reporting used throughout the scenario.
 
 ## Acknowledgements
 
@@ -76,9 +76,9 @@ We would like to formally thank the people that contributed to the content, revi
 
 ## Connect with us 🗨️
 
-We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better. 
+We 💖 feedback! Let us know how using ATT&CK Evaluation results has helped you and what we can do better.
 
-Email: <evals@mitre-engenuity.org><br>
+Email: <evals@mitre.org><br>
 Twitter: https://twitter.com/MITREengenuity<br>
 LinkedIn: https://www.linkedin.com/company/mitre-engenuity/<br>
 
@@ -88,7 +88,7 @@ This content is only to be used with appropriate prior, explicit authorization f
 
 ## Notice
 
-© 2023 MITRE Engenuity. Approved for Public Release. Document number CT0005.
+© 2023 The MITRE Corporation. Approved for Public Release. Document number CT0005.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

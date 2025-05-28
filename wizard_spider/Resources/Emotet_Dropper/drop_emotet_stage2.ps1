@@ -4,7 +4,7 @@ function Get-EmotetExecutable {
     Emulates Emotet's stage 2 PowerShell dropper.
 
        Author(s):   Michael C. Long II
-    Organization:   MITRE Engenuity
+    Organization:   The MITRE Corporation
          Version:   1.0
          Created:   March 3rd, 2021
 

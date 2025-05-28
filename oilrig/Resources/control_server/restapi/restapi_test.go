@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
-	"attackevals.mitre-engenuity.org/control_server/config"
-	"attackevals.mitre-engenuity.org/control_server/handlers/util"
-	"attackevals.mitre-engenuity.org/control_server/logger"
-	"attackevals.mitre-engenuity.org/control_server/restapi"
-	"attackevals.mitre-engenuity.org/control_server/sessions"
+	"attackevals.mitre.org/control_server/config"
+	"attackevals.mitre.org/control_server/handlers/util"
+	"attackevals.mitre.org/control_server/logger"
+	"attackevals.mitre.org/control_server/restapi"
+	"attackevals.mitre.org/control_server/sessions"
 )
 
 var baseURL string = "http://127.0.0.1:9999/api/v1.0/"
@@ -245,7 +245,7 @@ func TestGetSessionTask(t *testing.T) {
 func TestBootstrapTask(t *testing.T) {
 	startRESTapi()
 	defer stopRESTapi()
-	
+
 	// register dummy handler
 	handlerName := "testhandler"
 	util.RunningHandlers[handlerName] = nil
@@ -281,7 +281,7 @@ func TestBootstrapTask(t *testing.T) {
 	if string(body) != expectedOutput {
 		t.Errorf("Expected \"%v\", got \"%v\"", expectedOutput, string(body))
 	}
-	
+
 	getResp, err := http.Get(url)
 	if err != nil {
 		t.Error(err)
@@ -294,7 +294,7 @@ func TestBootstrapTask(t *testing.T) {
 	if string(taskData) != task {
 		t.Errorf("Expected '%v' got '%v'", task, string(taskData))
 	}
-	
+
 	delReq, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
 		t.Error(err)
@@ -348,7 +348,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if string(body) != expectedOutput {
 		t.Errorf("Expected \"%v\", got \"%v\"", expectedOutput, string(body))
 	}
-	
+
 	getResp, err := http.Get(url)
 	if err != nil {
 		t.Error(err)
@@ -361,7 +361,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if len(string(taskData)) > 0 {
 		t.Errorf("Expected empty task, got %s", string(taskData))
 	}
-	
+
 	delReq, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
 		t.Error(err)
@@ -374,7 +374,7 @@ func TestBootstrapTaskNotRunningHandler(t *testing.T) {
 	if delResp.StatusCode != 500 {
 		t.Errorf("Expected error code 500, got %v", delResp.StatusCode)
 	}
-	
+
 	respData, err := ioutil.ReadAll(delResp.Body)
 	if err != nil {
 		t.Error(err)

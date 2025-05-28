@@ -1,10 +1,10 @@
 rule output
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect output associated with keylogger.exe"
-	
+
     strings:
         $output1 = "Error, too many arguments."
 		$output2 = "Starting KeyCapture to file"
@@ -18,10 +18,10 @@ rule output
 rule file_names
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect file names associated with keylogger.exe"
-	
+
     strings:
         $path1 = "test.log"
 		$path2 = "SetWindowsHookEx-Keylogger.pdb"
@@ -33,10 +33,10 @@ rule file_names
 rule AV
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect AV strings associated with keylogger.exe"
-	
+
     strings:
 		$AV1 = ".?AVlogic_error@std@@"
 		$AV2 = ".?AVlength_error@std@@"
@@ -83,10 +83,10 @@ rule AV
 rule functions
 {
 	meta:
-		author = "MITRE Engenuity"
+		author = "The MITRE Corporation"
 		date = "2/16/2021"
 		description = "Used to detect functions associated with keylogger.exe"
-	
+
     strings:
 		$function1 = "FlsAlloc"
 		$function2 = "InitializeCriticalSectionEx"

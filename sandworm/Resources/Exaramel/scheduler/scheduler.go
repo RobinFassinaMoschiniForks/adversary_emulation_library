@@ -6,10 +6,10 @@ import (
 
 	"github.com/robfig/cron/v3"
 
-	"attackevals.mitre-engenuity.org/exaramel/configur"
-	"attackevals.mitre-engenuity.org/exaramel/logger"
-	"attackevals.mitre-engenuity.org/exaramel/networker"
-	"attackevals.mitre-engenuity.org/exaramel/worker"
+	"attackevals.mitre.org/exaramel/configur"
+	"attackevals.mitre.org/exaramel/logger"
+	"attackevals.mitre.org/exaramel/networker"
+	"attackevals.mitre.org/exaramel/worker"
 )
 
 var cr *cron.Cron

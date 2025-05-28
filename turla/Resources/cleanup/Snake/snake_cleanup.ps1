@@ -1,7 +1,7 @@
  # ---------------------------------------------------------------------------
  # snake_cleanup.ps1 - Cleans up Snake and its lateral movement artifacts. To be executed from a domain controller with administrative privileges.
 
- # Copyright 2023 MITRE Engenuity. Approved for public release. Document number CT0005.
+ # Copyright 2023 The MITRE Corporation. Approved for public release. Document number CT0005.
  # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
  # http://www.apache.org/licenses/LICENSE-2.0
@@ -9,15 +9,15 @@
  # Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  # This project makes use of ATT&CK®
- # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/ 
- 
+ # ATT&CK Terms of Use - https://attack.mitre.org/resources/terms-of-use/
+
  # Usage: .\snake_cleanup.ps1 -targets TARGET [-restart] [-deleteInstaller]
  #    Ex: .\snake_cleanup.ps1 -targets azuolas,berzas,uosis -restart -deleteInstaller
  #    Ex: .\snake_cleanup.ps1 -targets azuolas
- 
+
  # Revision History:
- 
- # --------------------------------------------------------------------------- 
+
+ # ---------------------------------------------------------------------------
 
 param($targets, [switch]$restart, [switch]$deleteInstaller)
 
@@ -128,4 +128,4 @@ foreach ($target in $targets) {
     Invoke-Command -ComputerName $target -ScriptBlock ${Function:Remove-CheckFile} -ArgumentList $userModuleDLL, "User Module DLL"
 }
 
-echo "[+] Snake clean up on $($targets -join ", ") completed" 
+echo "[+] Snake clean up on $($targets -join ", ") completed"
